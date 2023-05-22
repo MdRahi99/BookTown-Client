@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
+import "./Header.css";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -37,28 +38,28 @@ const Header = () => {
           >
             <div>
               <li className="w-52">
-                <Link
-                  className="border-l-2 border-black hover:bg-black hover:text-white px-2 py-1"
+                <NavLink
+                  className={({isActive}) => (isActive ? "active-link-mb" : "border-l-2 border-black hover:bg-black hover:text-white px-2 py-1")}
                   to="/books-category"
                 >
                   Books Category
-                </Link>
+                </NavLink>
               </li>
               <li className="w-52">
-                <Link
-                  className="border-l-2 border-black hover:bg-black hover:text-white px-2 py-1"
+                <NavLink
+                  className={({isActive}) => (isActive ? "active-link-mb" : "border-l-2 border-black hover:bg-black hover:text-white px-2 py-1")}
                   to="/used-books"
                 >
                   Used Books
-                </Link>
+                </NavLink>
               </li>
               <li className="w-52">
-                <Link
-                  className="border-l-2 border-black hover:bg-black hover:text-white px-2 py-1"
+                <NavLink
+                  className={({isActive}) => (isActive ? "active-link-mb" : "border-l-2 border-black hover:bg-black hover:text-white px-2 py-1")}
                   to="/sell-books"
                 >
                   Sell Books
-                </Link>
+                </NavLink>
               </li>
             </div>
 
@@ -104,28 +105,28 @@ const Header = () => {
       <div className="navbar-center text-xl font-wallPoet uppercase hidden lg:flex">
         <ul className="flex justify-between gap-5">
           <li>
-            <Link
+            <NavLink
               to="/books-category"
-              className="hover:bg-black hover:text-white px-2 py-1"
+              className={({isActive}) => (isActive ? "active-link" : "hover:bg-black hover:text-white px-2 py-1")}
             >
               Books Category
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link
+            <NavLink
               to="/used-books"
-              className="hover:bg-black hover:text-white px-2 py-1"
+              className={({isActive}) => (isActive ? "active-link" : "hover:bg-black hover:text-white px-2 py-1")}
             >
               Used Books
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link
+            <NavLink
               to="/sell-books"
-              className="hover:bg-black hover:text-white px-2 py-1"
+              className={({isActive}) => (isActive ? "active-link" : "hover:bg-black hover:text-white px-2 py-1")}
             >
               Sell Books
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </div>
