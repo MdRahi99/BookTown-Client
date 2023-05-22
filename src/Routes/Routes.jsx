@@ -4,6 +4,9 @@ import Home from "../Components/Home/Home";
 import Error from "../Components/Shared/Error/Error";
 import Login from "../Components/Register/Login/Login";
 import Register from "../Components/Register/Register/Register";
+import BooksCategory from "../Components/BooksCategory/BooksCategory";
+import UsedBooks from "../Components/UsedBooks/UsedBooks";
+import SellBooks from "../Components/SellBooks/SellBooks";
 
 const router = createBrowserRouter([
     {
@@ -16,15 +19,15 @@ const router = createBrowserRouter([
         },
         {
             path: "/books-category",
-            element: <Home></Home>
+            element: <BooksCategory></BooksCategory>
         },
         {
             path: "/used-books",
-            element: <Home></Home>
+            element: <UsedBooks></UsedBooks>
         },
         {
             path: "/sell-books",
-            element: <Home></Home>
+            element: <SellBooks></SellBooks>
         },
         {
             path: "/login",

@@ -65,8 +65,8 @@ const Header = () => {
 
             <div>
               {user?.email ? (
-                <div className="flex items-center gap-2 uppercase">
-                  <h3 className="bg-black text-white px-2 py-1">
+                <div className="flex flex-col gap-2 uppercase">
+                  <h3 className="bg-black text-sm text-white px-2 py-1">
                     {user?.displayName}
                   </h3>
                   <Link>
@@ -136,7 +136,7 @@ const Header = () => {
           <div className="flex items-center gap-2 uppercase">
             <Link to='/dashboard' className="flex items-center">
               <img className="h-10 w-10" src={user?.photoURL} alt="" />
-              <h3 className="bg-black hover:bg-white hover:text-black hover:border-y-2 hover:border-black h-10 flex items-center text-white px-2 py-1">
+              <h3 className="bg-black text-sm hover:bg-white hover:text-black hover:border-y-2 hover:border-black h-10 flex items-center text-white px-2 py-1">
                 {user?.displayName}
               </h3>
             </Link>

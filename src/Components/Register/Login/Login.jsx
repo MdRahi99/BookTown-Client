@@ -2,34 +2,63 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { FcGoogle } from "@react-icons/all-files/fc/FcGoogle";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Loader from '../../Shared/Loader/Loader';
+import Title from '../../../Hooks/Title';
 
 const Login = () => {
-    const { signInWithGoogle } = useContext(AuthContext);
+    Title('Login');
+    const { signIn, signInWithGoogle, loading } = useContext(AuthContext);
 
     const googleProvider = new GoogleAuthProvider();
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || '/';
 
     const handleGoogleLogin = () => {
         signInWithGoogle(googleProvider)
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                navigate(from, { replace: true });
             })
             .catch(error => console.error(error))
     };
 
+    const handleSignIn = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        signIn(email, password)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+            form.reset();
+            navigate(from, { replace: true });
+        })
+        .catch(error => console.error(error))
+    };
+
+    if(loading){
+      return <Loader></Loader>
+    }
+
     return (
         <div>
-            <form className='bg-slate-100 lg:w-1/2 mx-4 border-l-4 border-dashed border-slate-500 lg:mx-auto p-10 my-10'>
+            <form onSubmit={handleSignIn} className='bg-slate-100 lg:w-1/2 mx-4 border-l-4 border-dashed border-slate-500 lg:mx-auto p-10 my-10'>
                 <h1 className='font-wallPoet text-3xl w-full lg:w-3/4 mx-auto shadow-2xl shadow-slate-500 mb-16 border-x-4 border-slate-500 p-4 text-center uppercase'>Sign In</h1>
                 <div className='flex flex-col items-center gap-6'>
                     <div className='flex items-center shadow-md shadow-slate-500 justify-between gap-3 border-t-2 border-slate-500 text-black p-3 w-96 mx-2 lg:mx-auto'>
                         <h3 className='text-xl font-wallPoet'>Email:</h3>
-                        <input type="email" placeholder="Enter Your Email" className="input input-md font-wallPoet" />
+                        <input name='email' type="email" placeholder="Enter Your Email" className="input input-md font-wallPoet" />
                     </div>
                     <div className='flex items-center shadow-md shadow-slate-500 justify-between gap-3 border-t-2 border-slate-500 text-black p-3 w-96 mx-2 lg:mx-auto'>
                         <h3 className='text-xl font-wallPoet'>Password:</h3>
-                        <input type="password" placeholder="Enter Your Password" className="input input-md font-wallPoet" />
+                        <input name='password' type="password" placeholder="Enter Your Password" className="input input-md font-wallPoet" />
                     </div>
 
                     <div>
