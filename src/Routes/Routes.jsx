@@ -7,6 +7,7 @@ import Register from "../Components/Register/Register/Register";
 import BooksCategory from "../Components/BooksCategory/BooksCategory";
 import UsedBooks from "../Components/UsedBooks/UsedBooks";
 import SellBooks from "../Components/SellBooks/SellBooks";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
         },
         {
             path: "/sell-books",
-            element: <SellBooks></SellBooks>
+            element: <PrivateRoute><SellBooks></SellBooks></PrivateRoute>
         },
         {
             path: "/login",
