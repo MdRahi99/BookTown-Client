@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { FcGoogle } from "@react-icons/all-files/fc/FcGoogle";
@@ -8,6 +8,9 @@ import Title from '../../../Hooks/Title';
 
 const Register = () => {
     Title('Register');
+
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(false);
 
     const { createUser, updateUser, signInWithGoogle, loading } = useContext(AuthContext);
 
@@ -36,30 +39,42 @@ const Register = () => {
         const password = form.password.value;
 
         createUser(email, password)
-        .then(result => {
-            const user = result.user;
-            console.log(user);
+            .then(result => {
+                const user = result.user;
+                console.log(user);
 
-            const userProfile = {
-                displayName: name,
-                photoURL: photoURL
-            }
-            updateUser(userProfile)
-            .then(() => {})
-            .catch(error => console.error(error))
+                const userProfile = {
+                    displayName: name,
+                    photoURL: photoURL
+                }
+                updateUser(userProfile)
+                    .then(() => { })
+                    .catch(error => console.error(error))
 
-            form.reset();
-            navigate(from, { replace: true });
-        })
-        .catch(error => console.error(error))
+                setSuccess(true);
+                setTimeout(() => {
+                    setSuccess(false);
+                    navigate(from, { replace: true });
+                }, 2000);
+
+                setError(true);
+                form.reset();
+            })
+            .catch(error => setError(error.message));
     };
 
-    if(loading){
-       return <Loader></Loader>
+    if (loading && !setError) {
+        return <Loader></Loader>
     }
 
     return (
         <div>
+            {
+                success &&
+                <div className="alert alert-success shadow-lg w-1/2 mx-auto flex justify-center">
+                    <p>User Created Successfully</p>
+                </div>
+            }
             <form onSubmit={handleCreateUser} className='bg-slate-100 lg:w-1/2 mx-4 border-l-4 border-dashed border-slate-500 lg:mx-auto p-10 my-10'>
                 <h1 className='font-wallPoet text-3xl w-full lg:w-3/4 mx-auto shadow-2xl shadow-slate-500 mb-16 border-x-4 border-slate-500 p-4 text-center uppercase'>Sign Up</h1>
                 <div className='flex flex-col items-center gap-6'>
@@ -79,6 +94,13 @@ const Register = () => {
                         <h3 className='text-xl font-wallPoet'>Password:</h3>
                         <input name="password" type="password" placeholder="Enter Your Password" className="input input-md font-wallPoet" />
                     </div>
+
+                    {
+                        error &&
+                        <div>
+                            <p className='text-red-700 font-mono'>{error}</p>
+                        </div>
+                    }
 
                     <div className='mt-4'>
                         <button className='shadow-lg px-16 py-2 font-wallPoet text-xl border-x-2 border-slate-500 hover:bg-black hover:text-white'>Sign Up</button>
