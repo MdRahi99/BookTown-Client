@@ -20,6 +20,7 @@ const router = createBrowserRouter([
         },
         {
             path: "/books-category",
+            loader: async() => await fetch('http://localhost:5000/books-category'),
             element: <BooksCategory></BooksCategory>
         },
         {
