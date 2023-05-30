@@ -8,7 +8,7 @@ const Header = () => {
 
   const handleLogOut = () => {
     logOut()
-      .then(() => {})
+      .then(() => { })
       .catch((error) => console.log(error));
   };
 
@@ -39,7 +39,7 @@ const Header = () => {
             <div>
               <li className="w-52">
                 <NavLink
-                  className={({isActive}) => (isActive ? "active-link-mb" : "border-l-2 border-black hover:bg-black hover:text-white px-2 py-1")}
+                  className={({ isActive }) => (isActive ? "active-link-mb" : "border-l-2 border-black hover:bg-black hover:text-white px-2 py-1")}
                   to="/books-category"
                 >
                   Books Category
@@ -47,7 +47,7 @@ const Header = () => {
               </li>
               <li className="w-52">
                 <NavLink
-                  className={({isActive}) => (isActive ? "active-link-mb" : "border-l-2 border-black hover:bg-black hover:text-white px-2 py-1")}
+                  className={({ isActive }) => (isActive ? "active-link-mb" : "border-l-2 border-black hover:bg-black hover:text-white px-2 py-1")}
                   to="/used-books"
                 >
                   Used Books
@@ -55,45 +55,12 @@ const Header = () => {
               </li>
               <li className="w-52">
                 <NavLink
-                  className={({isActive}) => (isActive ? "active-link-mb" : "border-l-2 border-black hover:bg-black hover:text-white px-2 py-1")}
+                  className={({ isActive }) => (isActive ? "active-link-mb" : "border-l-2 border-black hover:bg-black hover:text-white px-2 py-1")}
                   to="/sell-books"
                 >
                   Sell Books
                 </NavLink>
               </li>
-            </div>
-
-            <div>
-              {user?.email ? (
-                <div className="flex flex-col gap-2 uppercase">
-                  <h3 className="bg-black text-sm text-white px-2 py-1">
-                    {user?.displayName}
-                  </h3>
-                  <Link>
-                    <button
-                      className="uppercase shadow py-1 px-2 border-x-2 hover:bg-black hover:text-white border-black"
-                      onClick={handleLogOut}
-                    >
-                      Log Out
-                    </button>
-                  </Link>
-                </div>
-              ) : (
-                <div className="flex flex-col gap-1 uppercase">
-                  <Link
-                    to="/login"
-                    className="hover:bg-black hover:text-white border-x-2 border-black px-2 py-1"
-                  >
-                    Log In
-                  </Link>
-                  <Link
-                    to="/register"
-                    className="hover:bg-black hover:text-white border-x-2 border-black px-2 py-1"
-                  >
-                    Register
-                  </Link>
-                </div>
-              )}
             </div>
           </ul>
         </div>
@@ -107,7 +74,7 @@ const Header = () => {
           <li>
             <NavLink
               to="/books-category"
-              className={({isActive}) => (isActive ? "active-link" : "hover:bg-black hover:text-white px-2 py-1")}
+              className={({ isActive }) => (isActive ? "active-link" : "hover:bg-black hover:text-white px-2 py-1")}
             >
               Books Category
             </NavLink>
@@ -115,7 +82,7 @@ const Header = () => {
           <li>
             <NavLink
               to="/used-books"
-              className={({isActive}) => (isActive ? "active-link" : "hover:bg-black hover:text-white px-2 py-1")}
+              className={({ isActive }) => (isActive ? "active-link" : "hover:bg-black hover:text-white px-2 py-1")}
             >
               Used Books
             </NavLink>
@@ -123,7 +90,7 @@ const Header = () => {
           <li>
             <NavLink
               to="/sell-books"
-              className={({isActive}) => (isActive ? "active-link" : "hover:bg-black hover:text-white px-2 py-1")}
+              className={({ isActive }) => (isActive ? "active-link" : "hover:bg-black hover:text-white px-2 py-1")}
             >
               Sell Books
             </NavLink>
@@ -131,18 +98,18 @@ const Header = () => {
         </ul>
       </div>
 
-      <div className="navbar-end font-wallPoet uppercase text-xl hidden lg:flex">
+      <div className="navbar-end font-wallPoet uppercase text-xl flex">
         {user?.email ? (
           <div className="flex items-center gap-2 uppercase">
             <Link to='/dashboard' className="flex items-center">
-              <img className="h-10 w-10" src={user?.photoURL} alt="" />
-              <h3 className="bg-black text-sm hover:bg-white hover:text-black hover:border-y-2 hover:border-black h-10 flex items-center text-white px-2 py-1">
+              <img className="h-6 lg:h-10 lg:w-10" src={user?.photoURL} alt="" />
+              <h3 className="bg-black text-xs lg:text-sm hover:bg-white hover:text-black hover:border-y-2 hover:border-black h-6 lg:h-10 flex items-center text-white px-2 py-1">
                 {user?.displayName}
               </h3>
             </Link>
             <Link>
               <button
-                className="uppercase shadow py-1 px-2 border-x-2 hover:border-y-2 hover:border-black border-black"
+                className="uppercase shadow text-xs lg:text-lg py-1 px-2 border-x-2 hover:border-y-2 hover:border-black border-black"
                 onClick={handleLogOut}
               >
                 Log Out
@@ -156,12 +123,6 @@ const Header = () => {
               className="border-x-2 border-black hover:bg-black hover:text-white px-2 py-1"
             >
               Log In
-            </Link>
-            <Link
-              to="/register"
-              className="bg-black text-white hover:border-y-2 hover:border-black hover:bg-white hover:text-black px-2 py-1"
-            >
-              Register
             </Link>
           </div>
         )}
