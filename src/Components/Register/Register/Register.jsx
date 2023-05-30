@@ -26,6 +26,13 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setSuccess(true);
+                setTimeout(() => {
+                    setSuccess(false);
+                    navigate(from, { replace: true });
+                }, 2000);
+
+                setError(true);
             })
             .catch(error => console.error(error))
     };
