@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         },
         {
             path: "/books-category/:id",
-            loader: async({params}) => await fetch(`http://localhost:5000/books-category/${params.id}`),
+            loader: async({params}) => await fetch(`https://booktown-server-production.up.railway.app/books-category/${params.id}`),
             element: <BooksCategory></BooksCategory>
         },
         {

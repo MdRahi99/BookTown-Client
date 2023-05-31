@@ -12,7 +12,7 @@ const Header = () => {
 
   const categoryData = async () => {
     try {
-      const loadData = await fetch('http://localhost:5000/books-category')
+      const loadData = await fetch('https://booktown-server-production.up.railway.app/books-category')
         .then(res => res.json())
         .then(data => setBooksCategory(data))
     }
