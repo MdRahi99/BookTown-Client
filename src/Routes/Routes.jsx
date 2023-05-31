@@ -8,6 +8,7 @@ import BooksCategory from "../Components/BooksCategory/BooksCategory";
 import UsedBooks from "../Components/UsedBooks/UsedBooks";
 import SellBooks from "../Components/SellBooks/SellBooks";
 import PrivateRoute from "./PrivateRoute";
+import UserDashboard from "../Components/UserDashboard/UserDashboard";
 
 const router = createBrowserRouter([
     {
@@ -19,8 +20,8 @@ const router = createBrowserRouter([
             element: <Home></Home>
         },
         {
-            path: "/books-category",
-            loader: async() => await fetch('http://localhost:5000/books-category'),
+            path: "/books-category/:id",
+            loader: async({params}) => await fetch(`http://localhost:5000/books-category/${params.id}`),
             element: <BooksCategory></BooksCategory>
         },
         {
@@ -40,6 +41,15 @@ const router = createBrowserRouter([
             element: <Register></Register>
         },
       ],
+    },
+    {
+        path:'/dashboard',
+        children: [
+            {
+                path: '/dashboard',
+                element: <UserDashboard></UserDashboard>
+            }
+        ]
     },
     {
         path: "*",
