@@ -9,6 +9,7 @@ import UsedBooks from "../Components/UsedBooks/UsedBooks";
 import SellBooks from "../Components/SellBooks/SellBooks";
 import PrivateRoute from "./PrivateRoute";
 import UserDashboard from "../Components/UserDashboard/UserDashboard";
+import ProfileLayout from "../Layout/ProfileLayout/ProfileLayout";
 
 const router = createBrowserRouter([
     {
@@ -44,6 +45,7 @@ const router = createBrowserRouter([
     },
     {
         path:'/dashboard',
+        element: <ProfileLayout></ProfileLayout>,
         children: [
             {
                 path: '/dashboard',
