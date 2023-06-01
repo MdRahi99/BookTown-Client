@@ -10,6 +10,7 @@ import SellBooks from "../Components/SellBooks/SellBooks";
 import PrivateRoute from "./PrivateRoute";
 import UserDashboard from "../Components/UserDashboard/UserDashboard";
 import ProfileLayout from "../Layout/ProfileLayout/ProfileLayout";
+import AllCategories from "../Components/Shared/AllCategories/AllCategories";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
             path: "/books-category/:id",
             loader: async({params}) => await fetch(`https://booktown-server-production.up.railway.app/books-category/${params.id}`),
             element: <BooksCategory></BooksCategory>
+        },
+        {
+            path: "/all-categories",
+            element: <AllCategories></AllCategories>
         },
         {
             path: "/used-books",

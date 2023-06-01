@@ -1,30 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import { RiLoginCircleFill } from "@react-icons/all-files/ri/RiLoginCircleFill";
 import "./Header.css";
+import AllCategories from "../AllCategories/AllCategories";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
-
-  const [error, setError] = useState('');
-
-  const [booksCategory, setBooksCategory] = useState([]);
-
-  const categoryData = async () => {
-    try {
-      const loadData = await fetch('https://booktown-server-production.up.railway.app/books-category')
-        .then(res => res.json())
-        .then(data => setBooksCategory(data))
-    }
-    catch {
-      error => setError(error.message);
-    }
-  };
-
-  useEffect(() => {
-    categoryData();
-  }, [])
 
   const handleLogOut = () => {
     logOut()
@@ -54,36 +36,23 @@ const Header = () => {
           </label>
           <ul
             tabIndex={0}
-            className="w-56 menu menu-compact bg-white dropdown-content border-y-4 border-black p-4 m-3 font-wallPoet uppercase"
+            className="w-96 flex flex-col gap-4 items-center menu menu-compact bg-white dropdown-content border-y-4 border-black p-4 m-3 font-wallPoet uppercase"
           >
-            <li tabIndex={0}>
-              <div className="hover:bg-black hover:text-white">
-                Books Category
-                <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
-              </div>
-              <ul className="p-2 bg-white">
-                <li>
-                  {
-                    booksCategory.map(category => <NavLink
-                      className="hover:bg-black hover:text-white"
-                      to={`/books-category/${category._id}`}
-                    >
-                      {category.name}
-                    </NavLink>)
-                  }
-                </li>
-              </ul>
+            <li tabIndex={0} className="border-y-4 border-double border-black">
+              <AllCategories></AllCategories>
             </li>
-            <li>
-              <NavLink className="hover:bg-black hover:text-white" to="/used-books">
-                Used Books
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className="hover:bg-black hover:text-white" to="/sell-books">
-                Sell Books
-              </NavLink>
-            </li>
+            <div>
+              <li>
+                <NavLink className="border-b-2 border-black hover:bg-black hover:text-white" to="/used-books">
+                  Used Books
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className="border-b-2 border-black hover:bg-black hover:text-white" to="/sell-books">
+                  Sell Books
+                </NavLink>
+              </li>
+            </div>
           </ul>
         </div>
         <Link to="/" className="text-2xl font-wallPoet">
@@ -93,27 +62,6 @@ const Header = () => {
 
       <div className="navbar-center text-lg font-wallPoet uppercase hidden lg:flex">
         <ul tabIndex={0} className="menu menu-horizontal flex gap-5">
-          <li tabIndex={0}>
-            <div className="hover:bg-black hover:text-white">
-              Books Category
-              <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
-            </div>
-            <ul className="p-2 bg-white border-x-4 border-black">
-              <li>
-                {
-                  booksCategory.map(category => <NavLink
-                    key={category._id}
-                    to={`/books-category/${category._id}`}
-                    className={({ isActive }) => (isActive ?
-                      "active-link"
-                      :
-                      "hover:bg-black hover:text-white")}
-                  >{category.name}
-                  </NavLink>)
-                }
-              </li>
-            </ul>
-          </li>
           <li>
             <NavLink
               to="/used-books"
