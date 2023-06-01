@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import UserDashboard from "../Components/UserDashboard/UserDashboard";
 import ProfileLayout from "../Layout/ProfileLayout/ProfileLayout";
 import AllCategories from "../Components/Shared/AllCategories/AllCategories";
+import RegisterLayout from "../Layout/RegisterLayout/RegisterLayout";
 
 const router = createBrowserRouter([
     {
@@ -38,15 +39,21 @@ const router = createBrowserRouter([
             path: "/sell-books",
             element: <PrivateRoute><SellBooks></SellBooks></PrivateRoute>
         },
-        {
-            path: "/login",
-            element: <Login></Login>
-        },
-        {
-            path: "/register",
-            element: <Register></Register>
-        },
       ],
+    },
+    {
+        path: '/',
+        element: <RegisterLayout></RegisterLayout>,
+        children: [
+            {
+                path: '/login',
+                element: <Login></Login>
+            },
+            {
+                path: 'register',
+                element: <Register></Register>
+            }
+        ]
     },
     {
         path:'/dashboard',
