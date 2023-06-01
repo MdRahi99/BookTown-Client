@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
+import { RiLoginCircleFill } from "@react-icons/all-files/ri/RiLoginCircleFill";
 import "./Header.css";
 
 const Header = () => {
@@ -32,7 +33,7 @@ const Header = () => {
   };
 
   return (
-    <div className="navbar w-full lg:w-11/12 mx-auto">
+    <div className="navbar w-full lg:w-11/12 mx-auto border-dashed border-b-2 rounded-2xl border-black">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -147,7 +148,10 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <button className="hover:bg-black hover:text-white" onClick={handleLogOut}>Log Out</button>
+                <div className="flex gap-2 items-center justify-center border-dotted shadow shadow-black border-x-2 mt-4 text-md border-black hover:bg-black hover:text-white">
+                  <button onClick={handleLogOut}>Log Out</button>
+                  <RiLoginCircleFill className="text-lg"></RiLoginCircleFill>
+                </div>
               </li>
             </ul>
           </div>
@@ -155,9 +159,10 @@ const Header = () => {
           <div className="flex items-center gap-4 uppercase">
             <Link
               to="/login"
-              className="border-x-2 border-black hover:bg-black hover:text-white px-2 py-1"
+              className="flex gap-2 items-center border-y-2 rounded-xl shadow shadow-black border-black hover:bg-black hover:text-white px-2 py-1"
             >
-              Log In
+              <h3>Log In</h3>
+              <RiLoginCircleFill></RiLoginCircleFill>
             </Link>
           </div>
         )}
