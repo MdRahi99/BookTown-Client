@@ -31,7 +31,7 @@ const UserProfile = () => {
             <div className='flex flex-row lg:flex-col gap-4 justify-center text-white font-wallPoet p-4'>
                 <div className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
                     <RiDashboardFill></RiDashboardFill>
-                    <Link className='hidden lg:block'>Dashboard</Link>
+                    <Link to='/' className='hidden lg:block'>Home</Link>
                 </div>
                 <div className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
                     <GiBookshelf></GiBookshelf>

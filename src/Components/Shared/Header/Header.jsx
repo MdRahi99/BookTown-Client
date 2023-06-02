@@ -51,8 +51,8 @@ const Header = () => {
             </div>
             <div className="flex flex-col gap-3 items-center justify-center">
               <li>
-                <NavLink className="w-60 mx-auto justify-center shadow shadow-black border-b-2 border-black hover:bg-black hover:text-white" to="/used-books">
-                  Used Books
+                <NavLink className="w-60 mx-auto justify-center shadow shadow-black border-b-2 border-black hover:bg-black hover:text-white" to="/all-books">
+                  Books
                 </NavLink>
               </li>
               <li>
@@ -87,10 +87,10 @@ const Header = () => {
         <ul tabIndex={0} className="menu menu-horizontal flex gap-5">
           <li>
             <NavLink
-              to="/used-books"
+              to="/all-books"
               className={({ isActive }) => (isActive ? "active-link" : "hover:bg-black hover:text-white")}
             >
-              Used Books
+              Books
             </NavLink>
           </li>
           <li>
