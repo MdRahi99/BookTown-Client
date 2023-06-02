@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import { RiLoginCircleFill } from "@react-icons/all-files/ri/RiLoginCircleFill";
+import { AiFillCaretDown } from "@react-icons/all-files/ai/AiFillCaretDown";
 import "./Header.css";
 import AllCategories from "../AllCategories/AllCategories";
 
@@ -38,18 +39,35 @@ const Header = () => {
             tabIndex={0}
             className="w-96 flex flex-col gap-4 items-center menu menu-compact bg-white dropdown-content border-y-4 border-black p-4 m-3 font-wallPoet uppercase"
           >
-            <li tabIndex={0} className="border-y-4 border-double border-black">
-              <AllCategories></AllCategories>
-            </li>
             <div>
+              <div className="flex items-center gap-2 w-60 mx-auto justify-center shadow shadow-black border-b-2 border-black hover:bg-black hover:text-white" to="/used-books">
+                <AiFillCaretDown className="text-xl"></AiFillCaretDown>
+                <h3>All Categories</h3>
+                <AiFillCaretDown className="text-xl"></AiFillCaretDown>
+              </div>
+              <li tabIndex={0} className="mt-3 border-x-4 border-dotted border-black">
+                <AllCategories></AllCategories>
+              </li>
+            </div>
+            <div className="flex flex-col gap-3 items-center justify-center">
               <li>
-                <NavLink className="border-b-2 border-black hover:bg-black hover:text-white" to="/used-books">
+                <NavLink className="w-60 mx-auto justify-center shadow shadow-black border-b-2 border-black hover:bg-black hover:text-white" to="/used-books">
                   Used Books
                 </NavLink>
               </li>
               <li>
-                <NavLink className="border-b-2 border-black hover:bg-black hover:text-white" to="/sell-books">
+                <NavLink className="w-60 mx-auto justify-center shadow shadow-black border-b-2 border-black hover:bg-black hover:text-white" to="/sell-books">
                   Sell Books
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className="w-60 mx-auto justify-center shadow shadow-black border-b-2 border-black hover:bg-black hover:text-white" to="/about">
+                  About Us
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className="w-60 mx-auto justify-center shadow shadow-black border-b-2 border-black hover:bg-black hover:text-white" to="/contact">
+                  Contact
                 </NavLink>
               </li>
             </div>
@@ -76,6 +94,22 @@ const Header = () => {
               className={({ isActive }) => (isActive ? "active-link" : "hover:bg-black hover:text-white")}
             >
               Sell Books
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/about"
+              className={({ isActive }) => (isActive ? "active-link" : "hover:bg-black hover:text-white")}
+            >
+              About Us
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) => (isActive ? "active-link" : "hover:bg-black hover:text-white")}
+            >
+              Contact
             </NavLink>
           </li>
         </ul>

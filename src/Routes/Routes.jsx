@@ -12,6 +12,8 @@ import UserDashboard from "../Components/UserDashboard/UserDashboard";
 import ProfileLayout from "../Layout/ProfileLayout/ProfileLayout";
 import AllCategories from "../Components/Shared/AllCategories/AllCategories";
 import RegisterLayout from "../Layout/RegisterLayout/RegisterLayout";
+import About from "../Components/About/About";
+import Contact from "../Components/Contact/Contact";
 
 const router = createBrowserRouter([
     {
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
         {
             path: "/sell-books",
             element: <PrivateRoute><SellBooks></SellBooks></PrivateRoute>
+        },
+        {
+            path: "/about",
+            element: <About></About>
+        },
+        {
+            path: "/contact",
+            element: <Contact></Contact>
         },
       ],
     },

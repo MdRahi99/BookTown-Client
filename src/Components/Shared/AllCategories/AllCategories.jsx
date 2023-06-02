@@ -22,7 +22,7 @@ const AllCategories = () => {
 
     return (
         <div className='flex flex-col w-full lg:gap-3 bg-white text-black lg:bg-black lg:text-white p-4 rounded-2xl'>
-            <h3 className='text-lg text-center lg:rounded-2xl font-wallPoet uppercase border-b-2 lg:border-y-4 border-black lg:border-white py-2'>All Categories</h3>
+            <h3 className='hidden lg:block text-lg text-center lg:rounded-2xl font-wallPoet uppercase border-b-2 lg:border-y-4 border-black lg:border-white py-2'>All Categories</h3>
 
             <div>
                 {
