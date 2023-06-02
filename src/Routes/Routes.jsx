@@ -14,6 +14,7 @@ import AllCategories from "../Components/Shared/AllCategories/AllCategories";
 import RegisterLayout from "../Layout/RegisterLayout/RegisterLayout";
 import About from "../Components/About/About";
 import Contact from "../Components/Contact/Contact";
+import Blogs from "../Components/Blogs/Blogs";
 
 const router = createBrowserRouter([
     {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
         {
             path: "/sell-books",
             element: <PrivateRoute><SellBooks></SellBooks></PrivateRoute>
+        },
+        {
+            path: "/blogs",
+            element: <Blogs></Blogs>
         },
         {
             path: "/about",
