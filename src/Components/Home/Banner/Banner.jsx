@@ -22,7 +22,7 @@ const Banner = () => {
                     </h1>
                     <p className='text-sm w-2/3 mx-auto border-dashed border-y-2 border-black font-wallPoet p-2 text-center'>Discover the World of Books: Unleash Your Imagination!</p>
                 </div>
-                <div class="flex flex-row lg:flex-col gap-4 mt-3 lg:mt-0 text-3xl">
+                <div className="flex flex-row lg:flex-col gap-4 mt-3 lg:mt-0 text-3xl">
                     <FaFacebook className="hover:p-1 hover:bg-black hover:text-white hover:animate-pulse"></FaFacebook>
                     <FaInstagram className="hover:p-1 hover:bg-black hover:text-white hover:animate-pulse"></FaInstagram>
                     <FaLinkedin className="hover:p-1 hover:bg-black hover:text-white hover:animate-pulse"></FaLinkedin>
