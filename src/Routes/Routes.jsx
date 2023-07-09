@@ -15,6 +15,7 @@ import ShopLayout from "../Layout/BooksLayout/BooksLayout";
 import About from "../Components/About/About";
 import Contact from "../Components/Contact/Contact";
 import Blogs from "../Components/Blogs/Blogs";
+import BookDetails from "../Components/AllBooks/Books/BookDetails";
 
 const router = createBrowserRouter([
     {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
             path: "/books-category/:id",
             loader: async({params}) => await fetch(`https://booktown-server-production.up.railway.app/books-category/${params.id}`),
             element: <BooksCategory></BooksCategory>
+        },
+        {
+            path: "/book-details/:name",
+            element: <BookDetails></BookDetails>
         },
         {
             path: "/all-categories",
