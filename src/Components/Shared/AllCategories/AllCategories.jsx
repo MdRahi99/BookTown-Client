@@ -8,7 +8,7 @@ const AllCategories = () => {
 
     const getCategoryData = async () => {
         try {
-            const res = await axios.get('https://booktown-server-production.up.railway.app/books-category');
+            const res = await axios.get('https://book-town-server.vercel.app/books-category');
             setAllCategories(res.data);
         }
         catch (error) {
@@ -37,7 +37,7 @@ const AllCategories = () => {
                         to={`/books-category/${categories._id}`}
                         className='border-b-2 border-black lg:border-white hover:bg-black hover:text-white lg:hover:bg-white lg:hover:text-black text-center font-wallPoet rounded-2xl p-2'
                     >
-                        <button>{categories.name}</button>
+                        <button>{categories.category}</button>
                     </Link>)
                 }
             </div>
