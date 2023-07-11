@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Books from './Books/Books';
+import Search from '../Shared/Search/Search';
 
 const UsedBooks = () => {
 
@@ -17,12 +18,8 @@ const UsedBooks = () => {
 
     return (
         <div>
-            <div className='flex gap-3 items-center justify-center'>
-                <input type="text" placeholder="Type here" className="input border-2 border-black rounded-xl w-full max-w-md" />
-                <button className="btn btn-outline border-2 border-black rounded-xl">Search</button>
-            </div>
-
-            <div className='grid grid-cols-1 lg:grid-cols-3 mx-4 my-12 gap-8 items-center'>
+            <Search></Search>
+            <div className='grid grid-cols-1 lg:grid-cols-4 mx-4 gap-8 items-center'>
                 {
                     books.map(book => <Books key={book._id} book={book} />)
                 }

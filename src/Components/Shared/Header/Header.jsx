@@ -2,9 +2,7 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import { RiLoginCircleFill } from "@react-icons/all-files/ri/RiLoginCircleFill";
-import { AiFillCaretDown } from "@react-icons/all-files/ai/AiFillCaretDown";
 import "./Header.css";
-import AllCategories from "../AllCategories/AllCategories";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -39,16 +37,6 @@ const Header = () => {
             tabIndex={0}
             className="w-96 flex flex-col gap-4 items-center menu menu-compact bg-white dropdown-content border-y-4 border-black p-4 m-3 font-wallPoet uppercase"
           >
-            <div>
-              <div className="flex items-center gap-2 w-60 mx-auto justify-center shadow shadow-black border-b-2 border-black hover:bg-black hover:text-white" to="/used-books">
-                <AiFillCaretDown className="text-xl"></AiFillCaretDown>
-                <h3>All Categories</h3>
-                <AiFillCaretDown className="text-xl"></AiFillCaretDown>
-              </div>
-              <li tabIndex={0} className="mt-3 border-x-4 border-dotted border-black">
-                <AllCategories></AllCategories>
-              </li>
-            </div>
             <div className="flex flex-col gap-3 items-center justify-center">
               <li>
                 <NavLink className="w-60 mx-auto justify-center shadow shadow-black border-b-2 border-black hover:bg-black hover:text-white" to="/all-books">

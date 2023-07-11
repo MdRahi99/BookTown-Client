@@ -6,7 +6,7 @@ import { FaArrowRight } from "@react-icons/all-files/fa/FaArrowRight";
 const Books = ({ book }) => {
     const { _id, img, name, author, rating, price } = book;
     return (
-        <div className='rounded-2xl flex flex-col gap-3 outline-double p-4 h-full relative'>
+        <div className='rounded-2xl flex flex-col gap-3 shadow-xl outline-dashed outline-[#b3b4b4] p-4 h-full relative'>
             <div>
                 <img className='w-full h-64 rounded-xl' src={img} alt="" />
             </div>

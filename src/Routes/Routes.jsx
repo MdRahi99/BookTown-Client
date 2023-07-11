@@ -4,19 +4,15 @@ import Home from "../Components/Home/Home";
 import Error from "../Components/Shared/Error/Error";
 import Login from "../Components/Register/Login/Login";
 import Register from "../Components/Register/Register/Register";
-import BooksCategory from "../Components/BooksCategory/BooksCategory";
 import AllBooks from "../Components/AllBooks/AllBooks";
 import SellBooks from "../Components/SellBooks/SellBooks";
 import PrivateRoute from "./PrivateRoute";
 import UserDashboard from "../Components/UserDashboard/UserDashboard";
 import ProfileLayout from "../Layout/ProfileLayout/ProfileLayout";
-import AllCategories from "../Components/Shared/AllCategories/AllCategories";
-import ShopLayout from "../Layout/BooksLayout/BooksLayout";
 import About from "../Components/About/About";
 import Contact from "../Components/Contact/Contact";
 import Blogs from "../Components/Blogs/Blogs";
 import BookDetails from "../Components/AllBooks/Books/BookDetails";
-
 const router = createBrowserRouter([
     {
       path: "/",
@@ -27,18 +23,13 @@ const router = createBrowserRouter([
             element: <Home></Home>
         },
         {
-            path: "/books-category/:id",
-            loader: async({params}) => await fetch(`https://book-town-server.vercel.app/books-category/${params.id}`),
-            element: <BooksCategory></BooksCategory>
+            path: "/all-books",
+            element: <AllBooks></AllBooks>
         },
         {
             path: "/book-details/:id",
             loader: async({params}) => await fetch(`https://book-town-server.vercel.app/book-details/${params.id}`),
             element: <BookDetails></BookDetails>
-        },
-        {
-            path: "/all-categories",
-            element: <AllCategories></AllCategories>
         },
         {
             path: "/sell-books",
@@ -65,16 +56,6 @@ const router = createBrowserRouter([
             element: <Register></Register>
         }
       ],
-    },
-    {
-        path: '/',
-        element: <ShopLayout></ShopLayout>,
-        children: [
-            {
-                path: "/all-books",
-                element: <AllBooks></AllBooks>
-            }
-        ]
     },
     {
         path:'/dashboard',
