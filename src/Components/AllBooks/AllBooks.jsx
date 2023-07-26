@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Books from './Books/Books';
 import Search from '../Shared/Search/Search';
+import { AuthContext } from '../../Contexts/AuthProvider';
+import Loader from '../Shared/Loader/Loader';
 
 const UsedBooks = () => {
+
+    const {loading} = useContext(AuthContext);
 
     const [books, setBooks] = useState([]);
     useEffect(() => {
@@ -15,6 +19,10 @@ const UsedBooks = () => {
         bookData();
 
     }, []);
+
+    if(loading){
+       return <Loader></Loader>
+    }
 
     return (
         <div>
