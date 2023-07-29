@@ -15,7 +15,7 @@ const UsedBooks = () => {
 
     useEffect(() => {
         const categoriesData = async () => {
-            const data = await fetch('http://localhost:5000/books-category/')
+            const data = await fetch('https://book-town-server.vercel.app/books-category')
             const result = await data.json();
             setCategories(result);
         }
