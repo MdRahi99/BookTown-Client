@@ -5,7 +5,7 @@ import Error from "../Components/Shared/Error/Error";
 import Login from "../Components/Register/Login/Login";
 import Register from "../Components/Register/Register/Register";
 import AllBooks from "../Components/AllBooks/AllBooks";
-import SellBooks from "../Components/SellBooks/SellBooks";
+import SellBooks from "../Components/UserDashboard/SellBooks/SellBooks";
 import PrivateRoute from "./PrivateRoute";
 import UserDashboard from "../Components/UserDashboard/UserDashboard";
 import ProfileLayout from "../Layout/ProfileLayout/ProfileLayout";
@@ -30,10 +30,6 @@ const router = createBrowserRouter([
             path: "/book-details/:id",
             loader: async({params}) => await fetch(`https://book-town-server.vercel.app/book-details/${params.id}`),
             element: <BookDetails></BookDetails>
-        },
-        {
-            path: "/sell-books",
-            element: <PrivateRoute><SellBooks></SellBooks></PrivateRoute>
         },
         {
             path: "/blogs",
@@ -64,7 +60,11 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <UserDashboard></UserDashboard>
-            }
+            },
+            {
+                path: "/dashboard/sell-books",
+                element: <PrivateRoute><SellBooks></SellBooks></PrivateRoute>
+            },
         ]
     },
     {
