@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import { RiLoginCircleFill } from "@react-icons/all-files/ri/RiLoginCircleFill";
+import { AiOutlineEnter } from "@react-icons/all-files/ai/AiOutlineEnter";
 import "./Header.css";
 
 const Header = () => {
@@ -107,14 +108,15 @@ const Header = () => {
         {user?.email ? (
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-square avatar">
-              <div className="w-14 rounded">
+              <div className="w-14 rounded animate-pulse">
                 <img src={user?.photoURL} />
               </div>
             </label>
             <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
               <li>
-                <Link to='/dashboard'>
+                <Link className="flex gap-2 items-center" to='/dashboard'>
                   <span className="w-full bg-black hover:bg-white hover:text-black px-2 py-1 text-white">{user?.displayName}</span>
+                  <AiOutlineEnter className="animate-bounce text-3xl"/>
                 </Link>
               </li>
               <li>

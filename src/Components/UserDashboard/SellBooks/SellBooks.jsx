@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../Contexts/AuthProvider';
 
 const SellBooks = () => {
+
+    const {user} = useContext(AuthContext);
 
     const handleForm = (e) => {
         e.preventDefault();
@@ -11,7 +14,7 @@ const SellBooks = () => {
         const rating = form.rating.value;
         const price = form.price.value;
         const desc = form.desc.value;
-        const info = { img, name, author, rating, price, desc };
+        const info = { user, img, name, author, rating, price, desc };
         console.log(info)
         fetch('https://book-town-server.vercel.app/add-book', {
             method: 'POST',
