@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FcRating } from "@react-icons/all-files/fc/FcRating";
 import { FaArrowRight } from "@react-icons/all-files/fa/FaArrowRight";
 
-const MyBookDetails = ({ book }) => {
+const MyBookDetails = ({ book, books }) => {
 
     const { _id, img, name, author, rating, price } = book;
+    const [deleteBook, setDeleteBook] = useState(books);
+
+    const handleDelete = (_id) => {
+        fetch(`https://book-town-server.vercel.app/delete-book/${_id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    alert('Deleted Successfully')
+                    const remaining = deleteBook.filter(book => book._id !== _id);
+                    setDeleteBook(remaining)
+                };
+            });
+    };
 
     return (
         <div className='rounded-2xl flex flex-col gap-3 shadow-xl outline-dashed outline-[#b3b4b4] p-4 h-full relative'>
@@ -31,6 +46,11 @@ const MyBookDetails = ({ book }) => {
                     <FaArrowRight></FaArrowRight>
                 </Link>
             </div>
+            <button
+                className='p-1 bg-black rounded-xl text-lg font-medium text-white mt-2 hover:bg-slate-600 text-center'
+                onClick={() => handleDelete(_id)}>
+                Delete
+            </button>
         </div>
     );
 };
