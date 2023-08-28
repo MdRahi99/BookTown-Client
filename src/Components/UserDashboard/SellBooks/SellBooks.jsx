@@ -13,7 +13,7 @@ const SellBooks = () => {
         const desc = form.desc.value;
         const info = { img, name, author, rating, price, desc };
         console.log(info)
-        fetch('http://localhost:5000/add-book', {
+        fetch('https://book-town-server.vercel.app/add-book', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

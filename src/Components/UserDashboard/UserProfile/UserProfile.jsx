@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { RiDashboardFill } from '@react-icons/all-files/ri/RiDashboardFill';
+import { RiContactsBook2Fill } from '@react-icons/all-files/ri/RiContactsBook2Fill';
 import { GiBookshelf } from '@react-icons/all-files/gi/GiBookshelf';
 
 const UserProfile = () => {
@@ -29,17 +30,17 @@ const UserProfile = () => {
             </div>
 
             <div className='flex flex-row lg:flex-col gap-4 justify-center text-white font-wallPoet p-4'>
-                <Link to='/' className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
+                <Link to='/' title='Home' className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
                     <RiDashboardFill></RiDashboardFill>
-                    <Link className='hidden lg:block'>Home</Link>
+                    <h3 className='hidden lg:block'>Home</h3>
                 </Link>
-                <Link className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
+                <Link to='/dashboard/my-books' title='My Books' className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
                     <GiBookshelf></GiBookshelf>
-                    <Link className='hidden lg:block'>My Books</Link>
+                    <h3 className='hidden lg:block'>My Books</h3>
                 </Link>
-                <Link to='/dashboard/sell-books' className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
-                    <GiBookshelf></GiBookshelf>
-                    <Link className='hidden lg:block'>Sell Books</Link>
+                <Link to='/dashboard/sell-books' title='Sell Books' className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
+                    <RiContactsBook2Fill></RiContactsBook2Fill>
+                    <h3 className='hidden lg:block'>Sell Books</h3>
                 </Link>
             </div>
 

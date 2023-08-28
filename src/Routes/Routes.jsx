@@ -13,6 +13,7 @@ import About from "../Components/About/About";
 import Contact from "../Components/Contact/Contact";
 import Blogs from "../Components/Blogs/Blogs";
 import BookDetails from "../Components/AllBooks/Books/BookDetails";
+import MyBooks from "../Components/UserDashboard/MyBooks/MyBooks";
 const router = createBrowserRouter([
     {
       path: "/",
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <UserDashboard></UserDashboard>
+            },
+            {
+                path: '/dashboard/my-books',
+                element: <PrivateRoute><MyBooks></MyBooks></PrivateRoute>
             },
             {
                 path: "/dashboard/sell-books",
