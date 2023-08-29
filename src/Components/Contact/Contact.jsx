@@ -10,7 +10,7 @@ const Contact = () => {
         const desc = form.desc.value;
         const info = { name, email, desc };
         console.log(info)
-        fetch('http://localhost:5000/contact-info', {
+        fetch('https://book-town-server.vercel.app/contact-info', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
