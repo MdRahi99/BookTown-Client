@@ -3,7 +3,7 @@ import React from 'react';
 const Categories = ({ categories, handleCategory }) => {
 
     return (
-        <div className='flex lg:flex-row flex-col gap-4 lg:items-center justify-around mb-12 border-x-0 lg:border-y-2 border-[#b3b4b4] rounded p-2'>
+        <div className='flex lg:flex-row flex-col gap-8 lg:items-center justify-around mb-12 border-[#b3b4b4] rounded p-2'>
             {
                 categories.map(data => {
                     const { _id, category } = data;
