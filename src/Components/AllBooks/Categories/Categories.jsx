@@ -8,7 +8,7 @@ const Categories = ({ categories, handleCategory }) => {
                 categories.map(data => {
                     const { _id, category } = data;
                     return (
-                        <button key={_id} onClick={() => handleCategory(category)} className='px-4 py-2 font-semibold font-roboto border-b-2 lg:border-b-0 w-full lg:border-x-2 hover:bg-black hover:text-white border-[#b3b4b4]'>
+                        <button key={_id} onClick={() => handleCategory(category)} className='px-4 py-2 font-semibold font-roboto rounded-xl border-y-2 w-full hover:bg-black hover:text-white border-black'>
                             {category}
                         </button>
                     )
