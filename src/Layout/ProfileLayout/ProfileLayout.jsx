@@ -4,9 +4,9 @@ import UserProfile from '../../Components/UserDashboard/UserProfile/UserProfile'
 
 const ProfileLayout = () => {
     return (
-        <div className='flex lg:flex-row flex-col gap-2 m-2 rounded-2xl bg-slate-200 p-2'>
-           <UserProfile className='flex-none w-full lg:w-1/6'></UserProfile>
-           <Outlet className='flex-1 w-full lg:w-5/6'></Outlet>
+        <div className='grid lg:grid-cols-4 grid-cols-1 gap-2 m-2 rounded-2xl bg-slate-200 p-2'>
+           <div className='col-span-1'><UserProfile></UserProfile></div>
+           <div className='col-span-3'><Outlet></Outlet></div>
         </div>
     );
 };

@@ -25,21 +25,7 @@ const MyBooks = () => {
             <div>
                 {
                     books.find(book => book.user.email === user.email) ?
-                        <div className='grid grid-cols-1 lg:grid-cols-4 mx-4 gap-8 items-center'>
-                            {
-                                books.map(book => {
-                                    const { _id } = book;
-                                    return (
-                                        <MyBookDetails
-                                            key={_id}
-                                            book={book}
-                                            books={books}
-                                        >
-                                        </MyBookDetails>
-                                    )
-                                })
-                            }
-                        </div>
+                        <MyBookDetails books={books} setBooks={setBooks}></MyBookDetails>
                         :
                         <div className='text-lg lg:text-4xl px-6 py-3 text-center font-wallPoet font-medium my-8 lg:my-32 border-b-2 border-dotted border-black rounded-xl w-1/2 mx-auto'>No Books Found</div>
                 }
