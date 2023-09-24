@@ -1,4 +1,4 @@
-import {createBrowserRouter} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import Home from "../Components/Home/Home";
 import Error from "../Components/Shared/Error/Error";
@@ -14,48 +14,51 @@ import Contact from "../Components/Contact/Contact";
 import Blogs from "../Components/Blogs/Blogs";
 import BookDetails from "../Components/AllBooks/Books/BookDetails";
 import MyBooks from "../Components/UserDashboard/MyBooks/MyBooks";
+import MyBookDetails from "../Components/UserDashboard/MyBooks/MyBookDetails/MyBookDetails";
 const router = createBrowserRouter([
     {
-      path: "/",
-      element: <Main></Main>,
-      children: [
-        {
-            path: "/",
-            element: <Home></Home>
-        },
-        {
-            path: "/all-books",
-            element: <AllBooks></AllBooks>
-        },
-        {
-            path: "/book-details/:id",
-            loader: async({params}) => await fetch(`https://book-town-server.vercel.app/book-details/${params.id}`),
-            element: <BookDetails></BookDetails>
-        },
-        {
-            path: "/blogs",
-            element: <Blogs></Blogs>
-        },
-        {
-            path: "/about",
-            element: <About></About>
-        },
-        {
-            path: "/contact",
-            element: <Contact></Contact>
-        },
-        {
-            path: '/login',
-            element: <Login></Login>
-        },
-        {
-            path: 'register',
-            element: <Register></Register>
-        }
-      ],
+        path: "/",
+        element: <Main></Main>,
+        children: [
+            {
+                path: "/",
+                element: <Home></Home>
+            },
+            {
+                path: "/all-books",
+                element: <AllBooks></AllBooks>
+            },
+            {
+                path: "/book-details/:id",
+                loader: async ({ params }) => {
+                    return fetch(`https://book-town-server.vercel.app/book-details/${params.id}`);
+                },
+                element: <BookDetails></BookDetails>
+            },
+            {
+                path: "/blogs",
+                element: <Blogs></Blogs>
+            },
+            {
+                path: "/about",
+                element: <About></About>
+            },
+            {
+                path: "/contact",
+                element: <Contact></Contact>
+            },
+            {
+                path: '/login',
+                element: <Login></Login>
+            },
+            {
+                path: 'register',
+                element: <Register></Register>
+            }
+        ],
     },
     {
-        path:'/dashboard',
+        path: '/dashboard',
         element: <ProfileLayout></ProfileLayout>,
         children: [
             {
@@ -67,6 +70,13 @@ const router = createBrowserRouter([
                 element: <PrivateRoute><MyBooks></MyBooks></PrivateRoute>
             },
             {
+                path: "/dashboard/book-details/:id",
+                loader: async ({ params }) => {
+                    return fetch(`https://book-town-server.vercel.app/book-details/${params.id}`);
+                },
+                element: <MyBookDetails></MyBookDetails>
+            },
+            {
                 path: "/dashboard/sell-books",
                 element: <PrivateRoute><SellBooks></SellBooks></PrivateRoute>
             },
@@ -76,6 +86,6 @@ const router = createBrowserRouter([
         path: "*",
         element: <Error></Error>
     }
-  ]);
+]);
 
 export default router;

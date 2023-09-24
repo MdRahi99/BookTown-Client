@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import MyBookDetails from './MyBookDetails/MyBookDetails';
+import MyBooksDetails from './MyBooksDetails/MyBooksDetails';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 
 const MyBooks = () => {
@@ -25,7 +25,7 @@ const MyBooks = () => {
             <div>
                 {
                     books.find(book => book.user.email === user.email) ?
-                        <MyBookDetails books={books} setBooks={setBooks}></MyBookDetails>
+                        <MyBooksDetails books={books} setBooks={setBooks}></MyBooksDetails>
                         :
                         <div className='text-lg lg:text-4xl px-6 py-3 text-center font-wallPoet font-medium my-8 lg:my-32 border-b-2 border-dotted border-black rounded-xl w-1/2 mx-auto'>No Books Found</div>
                 }

@@ -2,11 +2,13 @@ import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 const BookDetails = () => {
-    const bookDetails = useLoaderData();
-    const { _id, img, name, author, rating, price } = bookDetails;
+    const data = useLoaderData();
+    const {name} = data;
+    console.log(data)
+
     return (
         <div>
-            <h2>{name}</h2>
+            {name}
         </div>
     );
 };
