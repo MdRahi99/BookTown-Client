@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { BiEdit } from "@react-icons/all-files/bi/BiEdit";
-import { RiDeleteBack2Fill } from '@react-icons/all-files/ri/RiDeleteBack2Fill';
 
 const MyBookDetails = () => {
 
@@ -23,7 +22,6 @@ const MyBookDetails = () => {
                     <Link to={`/dashboard/update-book/${_id}`}>
                         <BiEdit className='text-3xl hover:bg-green-800 bg-green-400 rounded' />
                     </Link>
-                    <button className='text-3xl hover:bg-red-500 bg-red-700 text-white rounded'><RiDeleteBack2Fill /></button>
                 </div>
 
                 <Link to='/dashboard/my-books' className='py-1 mt-6 font-roboto w-full text-center font-semibold text-xl hover:bg-slate-300 px-4 bg-white text-black rounded'>Back</Link>
