@@ -14,7 +14,7 @@ import Contact from "../Components/Contact/Contact";
 import Blogs from "../Components/Blogs/Blogs";
 import BookDetails from "../Components/AllBooks/Books/BookDetails";
 import MyBooks from "../Components/UserDashboard/MyBooks/MyBooks";
-import MyBookDetails from "../Components/UserDashboard/MyBooks/MyBookDetails/MyBookDetails";
+
 const router = createBrowserRouter([
     {
         path: "/",
@@ -68,13 +68,6 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/my-books',
                 element: <PrivateRoute><MyBooks></MyBooks></PrivateRoute>
-            },
-            {
-                path: "/dashboard/book-details/:id",
-                loader: async ({ params }) => {
-                    return fetch(`https://book-town-server.vercel.app/book-details/${params.id}`);
-                },
-                element: <MyBookDetails></MyBookDetails>
             },
             {
                 path: "/dashboard/sell-books",
