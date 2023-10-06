@@ -10,11 +10,12 @@ const SellBooks = () => {
         const form = e.target;
         const img = form.img.value;
         const name = form.name.value;
+        const email = user?.email || 'unregistered';
         const author = form.author.value;
         const rating = form.rating.value;
         const price = form.price.value;
         const desc = form.desc.value;
-        const info = { user, img, name, author, rating, price, desc };
+        const info = { email, img, name, author, rating, price, desc };
         console.log(info)
         fetch('https://book-town-server.vercel.app/add-book', {
             method: 'POST',
