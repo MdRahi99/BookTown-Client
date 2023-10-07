@@ -43,16 +43,31 @@ const Login = () => {
         signIn(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
-                form.reset();
 
+                const loggedUser = {
+                    email: user.email
+                }
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(loggedUser)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    localStorage.setItem('BookTown-Access-Token', data.token)
+                })
+                
+                form.reset();
+                
                 setSuccess(true);
                 setTimeout(() => {
-                    setSuccess(false);
-                    navigate(from, { replace: true });
-                }, 2000);
-
-                setError(true);
+                        setSuccess(false);
+                        navigate(from, { replace: true });
+                    }, 1000);
+                    
+                    setError(true);
             })
             .catch(error => setError(error.message))
     };

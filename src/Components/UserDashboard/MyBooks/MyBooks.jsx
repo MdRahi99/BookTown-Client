@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../Contexts/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import { BiEdit } from "@react-icons/all-files/bi/BiEdit";
 import { RiDeleteBack2Fill } from "@react-icons/all-files/ri/RiDeleteBack2Fill";
@@ -8,15 +8,32 @@ import Swal from 'sweetalert2';
 
 const MyBooks = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
 
     const [myBooks, setMyBooks] = useState([]);
 
+    const navigate = useNavigate();
+
     useEffect(() => {
-        fetch(`https://book-town-server.vercel.app/my-books?email=${user?.email}`)
+        fetch(`https://book-town-server.vercel.app/my-books?email=${user?.email}`, {
+            method: 'GET',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('BookTown-Access-Token')}`
+            }
+        })
             .then(res => res.json())
             .then(data => {
-                setMyBooks(data);
+                if (!data.error) {
+                    setMyBooks(data);
+                }
+                else {
+                    logOut()
+                        .then(() => { })
+                        .then(error => {
+                            console.log(error);
+                            navigate('/')
+                        })
+                }
             })
     }, []);
 

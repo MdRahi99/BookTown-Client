@@ -16,6 +16,7 @@ const UserProfile = () => {
     const handleLogOut = () => {
         logOut()
             .then(() => {
+                localStorage.removeItem('BookTown-Access-Token')
                 navigate(from, { replace: true });
             })
             .catch((error) => console.log(error));
