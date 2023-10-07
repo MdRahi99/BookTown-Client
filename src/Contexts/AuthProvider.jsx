@@ -6,8 +6,8 @@ export const AuthContext = createContext();
 
 const auth = getAuth(app);
 
-const AuthProvider = ({children}) => {
-    
+const AuthProvider = ({ children }) => {
+
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -15,22 +15,22 @@ const AuthProvider = ({children}) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     };
-    
+
     const updateUser = (profile) => {
         setLoading(true);
         return updateProfile(auth.currentUser, profile);
     };
-    
+
     const signIn = (email, password) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     };
-    
+
     const signInWithGoogle = (provider) => {
         setLoading(true);
         return signInWithPopup(auth, provider);
     };
-    
+
     const logOut = () => {
         setLoading(true);
         return signOut(auth);
@@ -40,14 +40,33 @@ const AuthProvider = ({children}) => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             setLoading(false);
+            if (currentUser && currentUser.email) {
+                const loggedUser = {
+                    email: currentUser.email
+                }
+                fetch('https://book-town-server.vercel.app/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(loggedUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('BookTown-Access-Token', data.token)
+                    })
+            }
+            else {
+                localStorage.removeItem('BookTown-Access-Token')
+            }
         });
-    
+
         return () => {
             return unsubscribe;
         }
-    },[]);
+    }, []);
 
-    const authInfo = {signInWithGoogle, logOut, user, createUser, signIn, updateUser, loading};
+    const authInfo = { signInWithGoogle, logOut, user, createUser, signIn, updateUser, loading };
 
     return (
         <AuthContext.Provider value={authInfo}>
