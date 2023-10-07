@@ -47,7 +47,7 @@ const Login = () => {
                 const loggedUser = {
                     email: user.email
                 }
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://book-town-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
