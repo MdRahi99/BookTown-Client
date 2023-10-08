@@ -1,38 +1,46 @@
 import React from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { BiEdit } from "@react-icons/all-files/bi/BiEdit";
 import MyBooks from './MyBooks';
 
 const MyBookDetails = () => {
 
     const bookDetails = useLoaderData();
+    const navigate = useNavigate();
     const { author, desc, email, img, name, price, rating, _id } = bookDetails;
 
     return (
         <div>
             {
                 bookDetails ?
-                    <div className='p-4 bg-white rounded-xl'>
-                        <div className='p-4 flex flex-col gap-4 w-full lg:w-3/4 mx-auto items-center justify-center bg-black text-white rounded-xl'>
-                            <img className='border-2 border-white rounded-xl h-96 w-96' src={img} alt="" />
-                            <h1 className='border-b-4 border-white text-2xl font-wallPoet uppercase'>
-                                {name}
-                            </h1>
-                            <p className='text-lg text-orange-600'><span className='text-md text-white mr-2'>Author Name:</span>{author}</p>
-                            <p className='text-lg text-orange-600'><span className='text-md text-white mr-2'>Rating:</span>{rating}</p>
-                            <p className='text-lg text-orange-600'><span className='text-md text-white mr-2'>Price:</span>{price}</p>
-                            <p className='text-lg text-orange-600'><span className='text-md text-white mr-2'>Description:</span>{desc}</p>
-                            <div className='flex items-center justify-between gap-8'>
-                                <Link to={`/dashboard/update-book/${_id}`}>
-                                    <BiEdit className='text-3xl hover:bg-green-800 bg-green-400 rounded' />
-                                </Link>
+                    <div className='rounded-xl'>
+                        <div className='flex flex-col lg:flex-row items-center justify-between bg-white rounded-xl'>
+                            <div className='w-full lg:w-2/5 p-4 rounded-xl'>
+                                <img className='border-4 border-black rounded-xl h-96 w-full p-1' src={img} alt="" />
                             </div>
+                            <div className='w-full p-4 lg:w-3/5 mx-3 flex flex-col gap-4'>
+                                <h1 className='border-b-4 rounded-r-xl border-black text-2xl font-wallPoet uppercase'>
+                                    {name}
+                                </h1>
+                                <p className='text-lg text-orange-600'><span className='text-md mr-2'>Author Name:</span>{author}</p>
+                                <p className='text-lg text-orange-600'><span className='text-md mr-2'>Rating:</span>{rating}</p>
+                                <p className='text-lg text-orange-600'><span className='text-md mr-2'>Price:</span>{price}</p>
+                                <p className='text-lg text-orange-600'><span className='text-md mr-2'>Description:</span>{desc}</p>
+                                <div className='flex items-center justify-between gap-2 mt-6'>
+                                    <Link
+                                        className='w-full flex gap-2 items-center bg-black p-1 rounded text-white hover:bg-[#585959] justify-center text-xl'
+                                        to={`/dashboard/update-book/${_id}`}>
+                                        Update
+                                        <BiEdit className='text-2xl rounded' />
+                                    </Link>
 
-                            <Link to='/dashboard/my-books' className='py-1 mt-6 font-roboto w-full text-center font-semibold text-xl hover:bg-slate-300 px-4 bg-white text-black rounded'>Back</Link>
+                                    <Link to='/dashboard/my-books' className='p-1 font-roboto w-full text-center text-xl hover:bg-slate-600 bg-black text-white rounded'>Back</Link>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     :
-                    <MyBooks></MyBooks>
+                    navigate('/dashboard/my-books')
             }
         </div>
     );
