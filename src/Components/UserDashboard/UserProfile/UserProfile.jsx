@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { RiDashboardFill } from '@react-icons/all-files/ri/RiDashboardFill';
 import { RiContactsBook2Fill } from '@react-icons/all-files/ri/RiContactsBook2Fill';
 import { GiBookshelf } from '@react-icons/all-files/gi/GiBookshelf';
+import { HiShoppingCart } from '@react-icons/all-files/hi/HiShoppingCart';
 
 const UserProfile = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -37,6 +38,10 @@ const UserProfile = () => {
                 <Link to='/dashboard/my-books' title='My Books' className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
                     <GiBookshelf></GiBookshelf>
                     <h3 className='hidden lg:block'>My Books</h3>
+                </Link>
+                <Link to='/dashboard/my-cart' title='My Books' className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
+                    <HiShoppingCart />
+                    <h3 className='hidden lg:block'>My Cart</h3>
                 </Link>
                 <Link to='/dashboard/sell-books' title='Sell Books' className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
                     <RiContactsBook2Fill></RiContactsBook2Fill>
