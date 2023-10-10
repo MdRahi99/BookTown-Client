@@ -2,8 +2,10 @@ import React from 'react';
 import { RiArticleFill } from '@react-icons/all-files/ri/RiArticleFill';
 import { FaArrowAltCircleDown } from '@react-icons/all-files/fa/FaArrowAltCircleDown';
 import { Link } from 'react-router-dom';
+import Title from '../../Hooks/Title';
 
 const Blogs = () => {
+    Title('Blogs')
     return (
         <div>
             <div className='flex justify-between items-center text-2xl font-wallPoet p-10 border-dashed border-y-2 border-black uppercase text-center rounded-2xl'>

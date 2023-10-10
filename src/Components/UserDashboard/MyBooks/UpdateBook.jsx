@@ -2,8 +2,10 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import Title from '../../../Hooks/Title';
 
 const UpdateBook = ({ bookDetails }) => {
+    Title('Update Book')
 
     const { author, desc, email, img, name, price, rating, _id } = bookDetails;
     const { user } = useContext(AuthContext);

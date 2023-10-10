@@ -1,6 +1,8 @@
 import React from 'react';
+import Title from '../../Hooks/Title';
 
 const Contact = () => {
+    Title('Contact')
 
     const handleForm = (e) => {
         e.preventDefault();

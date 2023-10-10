@@ -31,9 +31,9 @@ const UserProfile = () => {
             </div>
 
             <div className='flex flex-row lg:flex-col gap-4 justify-center text-white font-wallPoet p-4'>
-                <Link to='/' title='Home' className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
+                <Link to='/dashboard' title='Home' className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
                     <RiDashboardFill></RiDashboardFill>
-                    <h3 className='hidden lg:block'>Home</h3>
+                    <h3 className='hidden lg:block'>Overview</h3>
                 </Link>
                 <Link to='/dashboard/my-books' title='My Books' className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
                     <GiBookshelf></GiBookshelf>
@@ -49,8 +49,12 @@ const UserProfile = () => {
                 </Link>
             </div>
 
+            <div className='bg-white text-black w-80 text-center mt-12 text-md rounded-2xl hover:bg-black hover:text-white hover:border-x-2 hover:border-white mx-auto font-wallPoet p-1'>
+                <Link to='/'>Back to Home</Link>
+            </div>
+            <div className="divider w-1/2 mx-auto text-white">OR</div>
             <div className='text-white font-wallPoet p-4'>
-                <button onClick={handleLogOut} className='bg-white text-black w-full text-lg rounded-2xl mt-6 hover:bg-black hover:text-white hover:border-x-2 hover:boder-white mx-auto'>Log Out</button>
+                <button onClick={handleLogOut} className='bg-white text-black w-full text-lg rounded-2xl hover:bg-black hover:text-white hover:border-x-2 hover:boder-white mx-auto'>Log Out</button>
             </div>
         </div>
     );

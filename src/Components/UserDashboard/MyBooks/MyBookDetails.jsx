@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { BiEdit } from "@react-icons/all-files/bi/BiEdit";
 import UpdateBook from './UpdateBook';
+import Title from '../../../Hooks/Title';
 
 const MyBookDetails = () => {
+    Title('Book Details')
 
     const bookDetails = useLoaderData();
     const [updateBtn, setUpdateBtn] = useState(false);

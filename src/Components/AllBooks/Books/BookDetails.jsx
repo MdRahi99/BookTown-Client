@@ -4,8 +4,10 @@ import { AiFillStar } from '@react-icons/all-files/ai/AiFillStar';
 import { BiDollar } from '@react-icons/all-files/bi/BiDollar';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../Contexts/AuthProvider';
+import Title from '../../../Hooks/Title';
 
 const BookDetails = () => {
+    Title('Book Details')
     const data = useLoaderData();
     const {user} = useContext(AuthContext);
     const { author, category, img, name, price, rating, _id } = data;

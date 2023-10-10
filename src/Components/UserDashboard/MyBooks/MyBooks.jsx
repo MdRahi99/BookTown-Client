@@ -5,8 +5,10 @@ import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import { BiEdit } from "@react-icons/all-files/bi/BiEdit";
 import { AiFillDelete } from "@react-icons/all-files/ai/AiFillDelete";
 import Swal from 'sweetalert2';
+import Title from '../../../Hooks/Title';
 
 const MyBooks = () => {
+    Title('My Books')
 
     const { user, logOut } = useContext(AuthContext);
 
