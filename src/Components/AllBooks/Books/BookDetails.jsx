@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { AiFillStar } from '@react-icons/all-files/ai/AiFillStar';
 import { BiDollar } from '@react-icons/all-files/bi/BiDollar';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../../Contexts/AuthProvider';
 
 const BookDetails = () => {
     const data = useLoaderData();
+    const {user} = useContext(AuthContext);
     const { author, category, img, name, price, rating, _id } = data;
     const [addCart, setAddCart] = useState(false);
     const navigate = useNavigate();
@@ -14,7 +16,7 @@ const BookDetails = () => {
         setAddCart(true)
     }
 
-    if (addCart) {
+    if (addCart && user?.email) {
         Swal.fire({
             title: 'Item Added Successfully',
             icon: 'success',

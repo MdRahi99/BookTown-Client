@@ -35,7 +35,7 @@ const router = createBrowserRouter([
                 loader: async ({ params }) => {
                     return fetch(`https://book-town-server.vercel.app/book-details/${params.id}`);
                 },
-                element: <BookDetails></BookDetails>
+                element: <PrivateRoute><BookDetails /></PrivateRoute>
             },
             {
                 path: "/blogs",
@@ -73,7 +73,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/my-book-details/:id',
-                loader: ({params}) => fetch(`https://book-town-server.vercel.app/my-book-details/${params.id}`),
+                loader: ({ params }) => fetch(`https://book-town-server.vercel.app/my-book-details/${params.id}`),
                 element: <PrivateRoute><MyBookDetails></MyBookDetails></PrivateRoute>
             },
             {
