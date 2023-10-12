@@ -15,6 +15,7 @@ const UsedBooks = () => {
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
     const [asc, setAsc] = useState(true);
+    const [search, setSearch] = useState('');
 
     useEffect(() => {
         const categoriesData = async () => {
@@ -28,14 +29,14 @@ const UsedBooks = () => {
 
     useEffect(() => {
         const bookData = async () => {
-            const data = await fetch(`http://localhost:5000/books-details?sort=${asc ? 'asc' : 'desc'}`)
+            const data = await fetch(`https://book-town-server.vercel.app/books-details?search=${search}&sort=${asc ? 'asc' : 'desc'}`)
             const result = await data.json();
             setBooks(result);
         }
 
         bookData();
 
-    }, [asc]);
+    }, [asc, search]);
 
     if (loading) {
         return <Loader></Loader>
@@ -51,7 +52,7 @@ const UsedBooks = () => {
 
     return (
         <div>
-            <Search></Search>
+            <Search setSearch={setSearch}></Search>
             <div className='my-6 text-center'>
                 <button
                     className='text-sm hover:bg-black hover:text-white font-roboto p-2 font-bold border-2 rounded-xl border-black'
