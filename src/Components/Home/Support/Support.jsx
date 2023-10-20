@@ -35,7 +35,7 @@ const Support = () => {
     ]
 
     return (
-        <div className='my-20 shadow-inner shadow-black p-4 lg:p-20 rounded-xl'>
+        <div className='my-12 shadow-inner shadow-black p-4 lg:p-20 rounded-xl'>
             <Swiper
                 effect={'coverflow'}
                 grabCursor={true}
