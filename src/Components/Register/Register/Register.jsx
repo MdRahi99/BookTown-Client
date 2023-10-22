@@ -12,7 +12,7 @@ const Register = () => {
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
 
-    const { createUser, updateUser, signInWithGoogle, loading } = useContext(AuthContext);
+    const { createUser, updateUser, logOut, signInWithGoogle, loading } = useContext(AuthContext);
 
     const googleProvider = new GoogleAuthProvider();
 
@@ -61,11 +61,14 @@ const Register = () => {
                 setSuccess(true);
                 setTimeout(() => {
                     setSuccess(false);
-                    navigate(from, { replace: true });
                 }, 2000);
-
+                
                 setError(true);
                 form.reset();
+                logOut()
+                .then(() => {
+                    navigate('/login')
+                })
             })
             .catch(error => setError(error.message));
     };
