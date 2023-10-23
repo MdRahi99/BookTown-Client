@@ -16,6 +16,7 @@ import BookDetails from "../Components/AllBooks/Books/BookDetails";
 import MyBooks from "../Components/UserDashboard/MyBooks/MyBooks";
 import MyBookDetails from "../Components/UserDashboard/MyBooks/MyBookDetails";
 import MyCart from "../Components/UserDashboard/MyCart/MyCart";
+import CartInfo from "../Components/UserDashboard/MyCart/CartInfo";
 
 const router = createBrowserRouter([
     {
@@ -79,6 +80,11 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/my-cart",
                 element: <PrivateRoute><MyCart /></PrivateRoute>
+            },
+            {
+                path: "/dashboard/product-info/:id",
+                loader: ({params}) => fetch(`https://book-town-server.vercel.app/carts/${params.id}`),
+                element: <PrivateRoute><CartInfo /></PrivateRoute>
             },
             {
                 path: "/dashboard/sell-books",
