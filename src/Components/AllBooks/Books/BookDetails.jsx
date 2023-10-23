@@ -18,7 +18,7 @@ const BookDetails = () => {
         if (user && user.email) {
             const cartItem = { email: user.email, menuItemId: _id, name, img, price, rating, category, author };
 
-            fetch('http://localhost:5000/carts', {
+            fetch('https://book-town-server.vercel.app/carts', {
                 method: 'POST',
                 headers: {
                     "content-type": "application/json"
