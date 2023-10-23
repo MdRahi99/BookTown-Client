@@ -5,27 +5,18 @@ import { AuthContext } from '../../Contexts/AuthProvider';
 import Loader from '../Shared/Loader/Loader';
 import Categories from './Categories/Categories';
 import Title from '../../Hooks/Title';
+import useBooksCategory from '../../Hooks/useBooksCategory';
 
 const UsedBooks = () => {
     Title('Books')
+    const [categories] = useBooksCategory();
 
     const { loading } = useContext(AuthContext);
 
     const [books, setBooks] = useState([]);
-    const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
     const [asc, setAsc] = useState(true);
     const [search, setSearch] = useState('');
-
-    useEffect(() => {
-        const categoriesData = async () => {
-            const data = await fetch('https://book-town-server.vercel.app/books-category')
-            const result = await data.json();
-            setCategories(result);
-        }
-
-        categoriesData();
-    }, []);
 
     useEffect(() => {
         const bookData = async () => {
