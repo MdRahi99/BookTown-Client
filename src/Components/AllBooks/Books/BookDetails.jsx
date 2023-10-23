@@ -1,30 +1,42 @@
 import React, { useContext, useState } from 'react';
-import { Link, useLoaderData, useNavigate } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { AiFillStar } from '@react-icons/all-files/ai/AiFillStar';
 import { BiDollar } from '@react-icons/all-files/bi/BiDollar';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import Title from '../../../Hooks/Title';
+import useCart from '../../../Hooks/useCart';
 
 const BookDetails = () => {
     Title('Book Details')
     const data = useLoaderData();
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
+    const [,refetch] = useCart();
     const { author, category, img, name, price, rating, _id } = data;
-    const [addCart, setAddCart] = useState(false);
-    const navigate = useNavigate();
 
-    const handleAddCart = () => {
-        setAddCart(true)
-    }
+    const handleAddCart = (_id) => {
+        if (user && user.email) {
+            const cartItem = { email: user.email, menuItemId: _id, name, img, price, rating, category, author };
 
-    if (addCart && user?.email) {
-        Swal.fire({
-            title: 'Item Added Successfully',
-            icon: 'success',
-            confirmButtonText: 'Ok'
-        })
-        navigate('/dashboard/my-cart')
+            fetch('http://localhost:5000/carts', {
+                method: 'POST',
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(cartItem)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    refetch();
+                    if (data && user?.email) {
+                        Swal.fire({
+                            title: 'Item Added Successfully',
+                            icon: 'success',
+                            confirmButtonText: 'Ok'
+                        })
+                    }
+                })
+        }
     }
 
     return (
@@ -56,7 +68,7 @@ const BookDetails = () => {
                 <div className='mt-6 flex items-center w-full lg:w-1/4 justify-between'>
                     <div className='rounded-md px-3 py-2 hover:bg-slate-600 border-black bg-black text-white font-medium'>
                         <button
-                            onClick={() => handleAddCart()}>
+                            onClick={() => handleAddCart(_id)}>
                             Add to Cart
                         </button>
                     </div>

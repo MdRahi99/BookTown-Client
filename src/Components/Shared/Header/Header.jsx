@@ -2,8 +2,9 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import { RiLoginCircleFill } from "@react-icons/all-files/ri/RiLoginCircleFill";
-import { AiOutlineEnter } from "@react-icons/all-files/ai/AiOutlineEnter";
+import {BiCart} from '@react-icons/all-files/bi/BiCart'
 import "./Header.css";
+import useCart from "../../../Hooks/useCart";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -13,6 +14,8 @@ const Header = () => {
       .then(() => { })
       .catch((error) => console.log(error));
   };
+
+  const [cart] = useCart();
 
   return (
     <div className="navbar w-full lg:w-11/12 mx-auto border-dashed border-b-2 rounded-2xl border-black">
@@ -106,11 +109,17 @@ const Header = () => {
 
       <div className="navbar-end font-wallPoet uppercase text-xl flex">
         {user?.email ? (
-          <Link
-            className="dropdown dropdown-end p-2 hover:bg-[#484848] text-sm bg-black rounded-xl text-white"
-            to='/dashboard'>
-            Dashboard
-          </Link>
+          <div className="flex items-center gap-8 lg:gap-12">
+            <Link to='/dashboard/my-cart' className="indicator">
+              <span className="indicator-item badge badge-accent">{cart?.length || 0}</span>
+              <button className="text-black text-4xl"><BiCart /></button>
+            </Link>
+            <Link
+              className="dropdown dropdown-end p-2 hover:bg-[#484848] text-sm bg-black rounded-xl text-white"
+              to='/dashboard'>
+              Dashboard
+            </Link>
+          </div>
         ) : (
           <div className="flex items-center gap-4 uppercase">
             <Link
