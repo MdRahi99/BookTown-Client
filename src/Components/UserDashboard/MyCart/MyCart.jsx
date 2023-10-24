@@ -4,11 +4,40 @@ import useCart from "../../../Hooks/useCart";
 import { MdPayment } from '@react-icons/all-files/md/MdPayment';
 import { AiOutlineDelete } from '@react-icons/all-files/ai/AiOutlineDelete';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const MyCart = () => {
 
     Title('My Cart');
-    const [cart] = useCart();
+    const [cart, refetch] = useCart();
+
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`https://book-town-server.vercel.app/delete-cart/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            refetch()
+                            Swal.fire(
+                                'Deleted!',
+                                'Your item has been deleted.',
+                                'success'
+                            )
+                        }
+                    })
+            }
+        })
+    }
 
     return (
         <div className='mx-4 my-6'>
@@ -28,7 +57,7 @@ const MyCart = () => {
                                     className='text-2xl font-bold hover:text-slate-600' title='Checkout'>
                                     <MdPayment />
                                 </Link>
-                                <button className='text-2xl text-orange-600 font-bold hover:text-orange-800' title='Delete'>
+                                <button onClick={() => handleDelete(_id)} className='text-2xl text-orange-600 font-bold hover:text-orange-800' title='Delete'>
                                     <AiOutlineDelete />
                                 </button>
                             </div>

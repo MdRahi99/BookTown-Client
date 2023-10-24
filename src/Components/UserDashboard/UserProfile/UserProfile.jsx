@@ -5,12 +5,15 @@ import { RiDashboardFill } from '@react-icons/all-files/ri/RiDashboardFill';
 import { RiContactsBook2Fill } from '@react-icons/all-files/ri/RiContactsBook2Fill';
 import { GiBookshelf } from '@react-icons/all-files/gi/GiBookshelf';
 import { HiShoppingCart } from '@react-icons/all-files/hi/HiShoppingCart';
+import  useCart from '../../../Hooks/useCart';
 
 const UserProfile = () => {
     const { user, logOut } = useContext(AuthContext);
 
     const location = useLocation();
     const navigate = useNavigate();
+
+    const [cart] = useCart();
 
     const from = location.state?.from?.pathname || '/';
 
@@ -42,6 +45,7 @@ const UserProfile = () => {
                 <Link to='/dashboard/my-cart' title='My Books' className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
                     <HiShoppingCart />
                     <h3 className='hidden lg:block'>My Cart</h3>
+                    <span className="indicator-item badge badge-info">{cart?.length || 0}</span>
                 </Link>
                 <Link to='/dashboard/sell-books' title='Sell Books' className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
                     <RiContactsBook2Fill></RiContactsBook2Fill>
