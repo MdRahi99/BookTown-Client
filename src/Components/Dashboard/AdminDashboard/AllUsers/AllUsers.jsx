@@ -4,18 +4,13 @@ import Title from '../../../../Hooks/Title';
 import { AiOutlineDelete } from '@react-icons/all-files/ai/AiOutlineDelete';
 import { FaUserShield } from '@react-icons/all-files/fa/FaUserShield';
 import Swal from 'sweetalert2';
+import useAllUsers from '../../../../Hooks/useAllusers';
 
 const AllUsers = () => {
 
     Title('All Users');
 
-    const { data: users = [], refetch } = useQuery({
-        queryKey: ['users'],
-        queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users')
-            return res.json();
-        }
-    })
+    const [users, refetch] = useAllUsers();
 
     const handleUpdate = (user) => {
         fetch(`http://localhost:5000/users/admin/${user._id}`, {
