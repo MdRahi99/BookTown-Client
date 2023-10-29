@@ -34,6 +34,7 @@ import CartInfo from "../Components/Dashboard/UserDashboard/MyCart/CartInfo";
 // --------------- User Dashboard Ends --------------- //
 
 // --------------- Admin Dashboard Starts --------------- //
+import AllUsers from "../Components/Dashboard/AdminDashboard/AllUsers/AllUsers";
 // --------------- Admin Dashboard Ends --------------- //
 
 const router = createBrowserRouter([
@@ -109,6 +110,11 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/sell-books",
                 element: <PrivateRoute><SellBooks></SellBooks></PrivateRoute>
+            },
+            // ------------------------- //
+            {
+                path: "/dashboard/all-users",
+                element: <PrivateRoute><AllUsers /></PrivateRoute>
             },
         ]
     },

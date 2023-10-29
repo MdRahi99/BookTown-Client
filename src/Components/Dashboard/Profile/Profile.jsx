@@ -1,10 +1,23 @@
 import React from 'react';
 import UserProfile from './UserProfile';
+import AdminProfile from './AdminProfile';
 
 const Profile = () => {
+
+    const isadmin = true;
+
     return (
         <div>
-            <UserProfile />
+            {
+                isadmin ?
+                    <>
+                        <AdminProfile />
+                    </>
+                    :
+                    <>
+                        <UserProfile />
+                    </>
+            }
         </div>
     );
 };

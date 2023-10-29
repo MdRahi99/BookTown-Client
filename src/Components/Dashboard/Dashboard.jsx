@@ -1,12 +1,25 @@
 import React from 'react';
 import Title from '../../Hooks/Title';
+import AdminDashboard from './AdminDashboard/AdminDashboard';
+import UserDashboard from './UserDashboard/UserDashboard';
 
 const Dashboard = () => {
     Title('Dashboard')
 
+    const isadmin = true;
+
     return (
-        <div className='bg-white rounded-2xl w-full p-4'>
-            DashBoard
+        <div>
+            {
+                isadmin ?
+                    <>
+                        <AdminDashboard />
+                    </>
+                    :
+                    <>
+                        <UserDashboard />
+                    </>
+            }
         </div>
     );
 };
