@@ -36,9 +36,7 @@ const Banner = () => {
                         return <div className='h-96'>
                             <img 
                             className='rounded-xl h-full' 
-                            src={items.image} 
-                            loading="lazy" 
-                            preload="auto"/>
+                            src={items.image} />
                             <div className='legend rounded-xl'>
                                 <h1 className='flex flex-col items-center font-trainOne p-4 text-[44px]'>
                                     {items.name.slice(0,4)}
