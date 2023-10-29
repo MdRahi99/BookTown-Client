@@ -1,6 +1,6 @@
 import React from 'react';
-import Title from '../../../Hooks/Title';
-import useCart from "../../../Hooks/useCart";
+import Title from '../../../../Hooks/Title';
+import useCart from "../../../../Hooks/useCart";
 import { MdPayment } from '@react-icons/all-files/md/MdPayment';
 import { AiOutlineDelete } from '@react-icons/all-files/ai/AiOutlineDelete';
 import { Link } from 'react-router-dom';

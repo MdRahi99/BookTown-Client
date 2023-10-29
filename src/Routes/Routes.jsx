@@ -1,24 +1,43 @@
 import { createBrowserRouter } from "react-router-dom";
+
+// --------------- Contents Starts --------------- //
 import Main from "../Layout/Main";
 import Home from "../Components/Home/Home";
 import Error from "../Components/Shared/Error/Error";
 import Login from "../Components/Register/Login/Login";
 import Register from "../Components/Register/Register/Register";
 import AllBooks from "../Components/AllBooks/AllBooks";
-import SellBooks from "../Components/UserDashboard/SellBooks/SellBooks";
-import PrivateRoute from "./PrivateRoute";
-import UserDashboard from "../Components/UserDashboard/UserDashboard";
-import ProfileLayout from "../Layout/ProfileLayout/ProfileLayout";
 import About from "../Components/About/About";
 import Contact from "../Components/Contact/Contact";
 import Blogs from "../Components/Blogs/Blogs";
 import BookDetails from "../Components/AllBooks/Books/BookDetails";
-import MyBooks from "../Components/UserDashboard/MyBooks/MyBooks";
-import MyBookDetails from "../Components/UserDashboard/MyBooks/MyBookDetails";
-import MyCart from "../Components/UserDashboard/MyCart/MyCart";
-import CartInfo from "../Components/UserDashboard/MyCart/CartInfo";
+// --------------- Contents Ends --------------- //
+
+// --------------- Private Route Starts --------------- //
+import PrivateRoute from "./PrivateRoute";
+// --------------- Private Route Ends --------------- //
+
+// --------------- Profile Layout Starts --------------- //
+import ProfileLayout from "../Layout/ProfileLayout/ProfileLayout";
+// --------------- Profile Layout Ends --------------- //
+
+// --------------- Dashboard Starts --------------- //
+import Dashboard from "../Components/Dashboard/Dashboard";
+// --------------- Dashboard Ends --------------- //
+
+// --------------- User Dashboard Starts --------------- //
+import SellBooks from "../Components/Dashboard/UserDashboard/SellBooks/SellBooks";
+import MyBooks from "../Components/Dashboard/UserDashboard/MyBooks/MyBooks";
+import MyBookDetails from "../Components/Dashboard/UserDashboard/MyBooks/MyBookDetails";
+import MyCart from "../Components/Dashboard/UserDashboard/MyCart/MyCart";
+import CartInfo from "../Components/Dashboard/UserDashboard/MyCart/CartInfo";
+// --------------- User Dashboard Ends --------------- //
+
+// --------------- Admin Dashboard Starts --------------- //
+// --------------- Admin Dashboard Ends --------------- //
 
 const router = createBrowserRouter([
+    // ----------- Contents Routes -----------
     {
         path: "/",
         element: <Main></Main>,
@@ -60,13 +79,14 @@ const router = createBrowserRouter([
             }
         ],
     },
+    // ----------- Dashboard Routes -----------
     {
         path: '/dashboard',
         element: <ProfileLayout></ProfileLayout>,
         children: [
             {
                 path: '/dashboard',
-                element: <UserDashboard></UserDashboard>
+                element: <Dashboard></Dashboard>
             },
             {
                 path: '/dashboard/my-books',

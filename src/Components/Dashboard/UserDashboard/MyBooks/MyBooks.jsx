@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../../Contexts/AuthProvider';
+import { AuthContext } from '../../../../Contexts/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
 import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import { BiEdit } from "@react-icons/all-files/bi/BiEdit";
 import { AiFillDelete } from "@react-icons/all-files/ai/AiFillDelete";
 import Swal from 'sweetalert2';
-import Title from '../../../Hooks/Title';
+import Title from '../../../../Hooks/Title';
 
 const MyBooks = () => {
     Title('My Books')

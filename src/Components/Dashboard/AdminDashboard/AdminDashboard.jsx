@@ -1,8 +1,9 @@
 import React from 'react';
-import Title from '../../Hooks/Title';
+import Title from '../../../Hooks/Title';
 
-const UserDashboard = () => {
-    Title('Dashboard')
+const AdminDashboard = () => {
+
+    Title('Admin Dashboard');
 
     return (
         <div className='bg-white rounded-2xl w-full p-4'>
@@ -11,4 +12,4 @@ const UserDashboard = () => {
     );
 };
 
-export default UserDashboard;
+export default AdminDashboard;

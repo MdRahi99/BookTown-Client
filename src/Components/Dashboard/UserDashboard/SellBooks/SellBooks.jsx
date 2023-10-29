@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../../../Contexts/AuthProvider';
+import { AuthContext } from '../../../../Contexts/AuthProvider';
 import Swal from 'sweetalert2';
-import Title from '../../../Hooks/Title';
+import Title from '../../../../Hooks/Title';
 
 const SellBooks = () => {
     Title('Sell Book')
