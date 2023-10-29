@@ -2,9 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { RiDashboardFill } from '@react-icons/all-files/ri/RiDashboardFill';
-import { RiContactsBook2Fill } from '@react-icons/all-files/ri/RiContactsBook2Fill';
-import { GiBookshelf } from '@react-icons/all-files/gi/GiBookshelf';
-import { HiShoppingCart } from '@react-icons/all-files/hi/HiShoppingCart';
+import {AiOutlineUsergroupAdd} from '@react-icons/all-files/ai/AiOutlineUsergroupAdd';
 import  useCart from '../../../Hooks/useCart';
 
 const AdminProfile = () => {
@@ -39,7 +37,7 @@ const AdminProfile = () => {
                     <h3 className='hidden lg:block'>Overview</h3>
                 </Link>
                 <Link to='/dashboard/all-users' title='Users' className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
-                    <RiDashboardFill></RiDashboardFill>
+                    <AiOutlineUsergroupAdd />
                     <h3 className='hidden lg:block'>All Users</h3>
                 </Link>
             </div>
