@@ -54,6 +54,7 @@ const AuthProvider = ({ children }) => {
                     .then(res => res.json())
                     .then(data => {
                         localStorage.setItem('BookTown-Access-Token', data.token)
+                        // setLoading(false)
                     })
             }
             else {

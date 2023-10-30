@@ -4,7 +4,7 @@ import Title from '../../../../Hooks/Title';
 import { AiOutlineDelete } from '@react-icons/all-files/ai/AiOutlineDelete';
 import { FaUserShield } from '@react-icons/all-files/fa/FaUserShield';
 import Swal from 'sweetalert2';
-import useAllUsers from '../../../../Hooks/useAllusers';
+import useAllUsers from '../../../../Hooks/useAllUsers';
 
 const AllUsers = () => {
 
