@@ -4,7 +4,7 @@ import AdminProfile from './AdminProfile';
 
 const Profile = () => {
 
-    const isadmin = true;
+    const isadmin = false;
 
     return (
         <div>

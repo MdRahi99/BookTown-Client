@@ -6,7 +6,7 @@ import UserDashboard from './UserDashboard/UserDashboard';
 const Dashboard = () => {
     Title('Dashboard')
 
-    const isadmin = true;
+    const isadmin = false;
 
     return (
         <div>
