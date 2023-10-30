@@ -1,22 +1,19 @@
 import React from 'react';
 import UserProfile from './UserProfile';
 import AdminProfile from './AdminProfile';
+import useAdmin from '../../../Hooks/useAdmin';
 
 const Profile = () => {
 
-    const isadmin = false;
+    const [isAdmin] = useAdmin();
 
     return (
         <div>
             {
-                isadmin ?
-                    <>
-                        <AdminProfile />
-                    </>
+                isAdmin?.admin ?
+                    <AdminProfile />
                     :
-                    <>
-                        <UserProfile />
-                    </>
+                    <UserProfile />
             }
         </div>
     );

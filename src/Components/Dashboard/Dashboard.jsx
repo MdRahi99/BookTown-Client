@@ -2,23 +2,21 @@ import React from 'react';
 import Title from '../../Hooks/Title';
 import AdminDashboard from './AdminDashboard/AdminDashboard';
 import UserDashboard from './UserDashboard/UserDashboard';
+import useAdmin from '../../Hooks/useAdmin';
 
 const Dashboard = () => {
     Title('Dashboard')
 
-    const isadmin = false;
+    const [isAdmin] = useAdmin();
+
 
     return (
         <div>
             {
-                isadmin ?
-                    <>
-                        <AdminDashboard />
-                    </>
+                isAdmin?.admin ?
+                    <AdminDashboard />
                     :
-                    <>
-                        <UserDashboard />
-                    </>
+                    <UserDashboard />
             }
         </div>
     );
