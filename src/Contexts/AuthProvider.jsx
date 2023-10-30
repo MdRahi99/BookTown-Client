@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
-            setLoading(false);
+            // setLoading(false);
             if (currentUser && currentUser.email) {
                 const loggedUser = {
                     email: currentUser.email
@@ -54,11 +54,12 @@ const AuthProvider = ({ children }) => {
                     .then(res => res.json())
                     .then(data => {
                         localStorage.setItem('BookTown-Access-Token', data.token)
-                        // setLoading(false)
+                        setLoading(false)
                     })
             }
             else {
                 localStorage.removeItem('BookTown-Access-Token')
+                setLoading(false);
             }
         });
 
