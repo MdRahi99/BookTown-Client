@@ -1,8 +1,3 @@
-import React from 'react';
-import { FaShippingFast } from '@react-icons/all-files/fa/FaShippingFast';
-import { MdAttachMoney } from '@react-icons/all-files/md/MdAttachMoney';
-import { GiTakeMyMoney } from '@react-icons/all-files/gi/GiTakeMyMoney';
-import { BiPhoneCall } from '@react-icons/all-files/bi/BiPhoneCall';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -10,7 +5,6 @@ import 'swiper/css/pagination';
 import { EffectCoverflow, Pagination } from 'swiper/modules';
 
 const Support = () => {
-
     const swiperData = [
         {
             image: "https://img.freepik.com/free-photo/front-view-stacked-books-ladders-education-day_23-2149241046.jpg?size=626&ext=jpg&ga=GA1.1.400272162.1684998168&semt=sph",
@@ -35,35 +29,41 @@ const Support = () => {
     ]
 
     return (
-        <div className='my-12 shadow-inner shadow-black p-4 lg:p-20 rounded-xl'>
+        <div className="flex items-center justify-center h-96 my-8 md:my-24 shadow-inner p-2 lg:p-10 rounded-xl">
             <Swiper
                 effect={'coverflow'}
                 grabCursor={true}
                 centeredSlides={true}
-                slidesPerView={'auto'}
+                spaceBetween={50} 
+                slidesPerView={1}
+                breakpoints={{
+                    640: {
+                        slidesPerView: 2,
+                    },
+                    768: {
+                        slidesPerView: 3,
+                    },
+                }}
                 coverflowEffect={{
-                    rotate: 50,
-                    stretch: 0,
+                    rotate: 0,
+                    stretch: 100,
                     depth: 100,
                     modifier: 1,
                     slideShadows: true,
                 }}
-                initialSlide={2}
                 pagination={true}
                 modules={[EffectCoverflow, Pagination]}
+                initialSlide={2}
                 className="mySwiper"
             >
-                {
-                    swiperData.map(data => {
-                        return <SwiperSlide className='h-64 w-96 rounded-xl'>
-                            <div className=''>
-                                <img className='rounded-xl absolute w-full h-full opacity-60' src={data.image} />
-                                <h3 className='border-x-8 border-black opacity-90 p-2 mx-2 rounded-xl relative text-center top-28 bg-slate-50 text-black text-2xl font-mono font-semibold'>{data.title}</h3>
-                            </div>
-                        </SwiperSlide>
-                    })
-                }
-
+                {swiperData.map((data, index) => (
+                    <SwiperSlide key={index}>
+                        <div className="relative w-full h-96">
+                            <img src={data.image} alt={data.title} className="w-full rounded-lg h-96" />
+                            <h1 className="text-white w-96 text-center text-lg absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-opacity-80 bg-black p-2 rounded-lg">{data.title}</h1>
+                        </div>
+                    </SwiperSlide>
+                ))}
             </Swiper>
         </div>
     );
