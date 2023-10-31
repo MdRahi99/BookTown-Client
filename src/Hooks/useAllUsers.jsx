@@ -1,6 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
+import { useContext } from 'react';
+import { AuthContext } from '../Contexts/AuthProvider';
 
 const useAllUsers = () => {
+
+    const { logOut } = useContext(AuthContext);
 
     const token = localStorage.getItem('BookTown-Access-Token')
 
@@ -12,6 +16,9 @@ const useAllUsers = () => {
                     authorization: `bearer ${token}`
                 }
             })
+            if (res.status === 401 || res.status === 403) {
+                logOut();
+            }
             return res.json();
         }
     });

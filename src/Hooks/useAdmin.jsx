@@ -3,7 +3,7 @@ import { AuthContext } from '../Contexts/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
 
 const useAdmin = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     const token = localStorage.getItem('BookTown-Access-Token')
 
     const { data: isAdmin, isLoading: isAdminLoading } = useQuery({
@@ -14,6 +14,9 @@ const useAdmin = () => {
                     authorization: `bearer ${token}`
                 }
             })
+            if (res.status === 401 || res.status === 403) {
+                logOut();
+            }
             return res.json();
         }
     })
