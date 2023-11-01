@@ -32,8 +32,8 @@ const Banner = () => {
 
             <Carousel className='col-span-12 lg:col-span-11 text-center rounded-xl'>
                 {
-                    carouselItems.map(items => {
-                        return <div className='h-96'>
+                    carouselItems.map((items, index) => {
+                        return <div key={index} className='h-96'>
                             <img 
                             className='rounded-xl h-full' 
                             src={items.image} />
