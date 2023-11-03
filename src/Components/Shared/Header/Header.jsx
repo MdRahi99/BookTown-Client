@@ -1,13 +1,12 @@
-import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { AuthContext } from "../../../Contexts/AuthProvider";
 import { RiLoginCircleFill } from "@react-icons/all-files/ri/RiLoginCircleFill";
 import {BiCart} from '@react-icons/all-files/bi/BiCart'
 import "./Header.css";
 import useCart from "../../../Hooks/useCart";
+import useAuth from "../../../Hooks/useAuth";
 
 const Header = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut } = useAuth();
 
   const handleLogOut = () => {
     logOut()

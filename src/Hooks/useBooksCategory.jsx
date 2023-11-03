@@ -1,15 +1,15 @@
-import React from 'react';
 import { useEffect, useState } from "react";
+import useAxiosSecure from "./useAxiosSecure";
 
 const useBooksCategory = () => {
 
     const [categories, setCategories] = useState([]);
+    const [axiosSecure] = useAxiosSecure();
 
     useEffect(() => {
         const categoriesData = async () => {
-            const data = await fetch('https://book-town-server.vercel.app/books-category')
-            const result = await data.json();
-            setCategories(result);
+            const data = await axiosSecure('/books-category')
+            setCategories(data.data);
         }
 
         categoriesData();

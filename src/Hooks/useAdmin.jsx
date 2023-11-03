@@ -1,31 +1,21 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../Contexts/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
-import Loader from '../Components/Shared/Loader/Loader';
+import useAuth from './useAuth';
+import useAxiosSecure from './useAxiosSecure';
 
 const useAdmin = () => {
-    const { user, logOut } = useContext(AuthContext);
-    const token = localStorage.getItem('BookTown-Access-Token')
-
-    if (!user) {
-        return [[], () => { }];
-    }
+    const { user } = useAuth();
+    const [axiosSecure] = useAxiosSecure();
 
     const { data: isAdmin, isLoading: isAdminLoading } = useQuery({
         queryKey: ['isAdmin', user?.email],
         queryFn: async () => {
-            const res = await fetch(`https://book-town-server.vercel.app/users/admin/${user?.email}`, {
-                headers: {
-                    authorization: `bearer ${token}`
-                }
-            })
-            if(isAdminLoading){
-                return <Loader />
+            if (user?.email) {
+                const res = await axiosSecure(`/users/admin/${user?.email}`)
+                return res.data;
             }
-            if (res.status === 401 || res.status === 403) {
-                logOut();
+            else{
+                return [];
             }
-            return res.json();
         }
     })
     return [isAdmin, isAdminLoading]

@@ -1,14 +1,13 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../../../Contexts/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { RiDashboardFill } from '@react-icons/all-files/ri/RiDashboardFill';
 import { RiContactsBook2Fill } from '@react-icons/all-files/ri/RiContactsBook2Fill';
 import { GiBookshelf } from '@react-icons/all-files/gi/GiBookshelf';
 import { HiShoppingCart } from '@react-icons/all-files/hi/HiShoppingCart';
 import  useCart from '../../../Hooks/useCart';
+import useAuth from '../../../Hooks/useAuth';
 
 const UserProfile = () => {
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut } = useAuth();
 
     const location = useLocation();
     const navigate = useNavigate();

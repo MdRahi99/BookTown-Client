@@ -1,12 +1,11 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../../../Contexts/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { RiDashboardFill } from '@react-icons/all-files/ri/RiDashboardFill';
 import {AiOutlineUsergroupAdd} from '@react-icons/all-files/ai/AiOutlineUsergroupAdd';
 import  useCart from '../../../Hooks/useCart';
+import useAuth from '../../../Hooks/useAuth';
 
 const AdminProfile = () => {
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut } = useAuth();
 
     const location = useLocation();
     const navigate = useNavigate();

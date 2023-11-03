@@ -1,12 +1,11 @@
 import { GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext } from 'react';
-import { AuthContext } from '../../../Contexts/AuthProvider';
 import { FcGoogle } from '@react-icons/all-files/fc/FcGoogle';
 import { useLocation, useNavigate } from 'react-router-dom';
+import useAuth from '../../../Hooks/useAuth';
 
 const SocialLogin = () => {
 
-    const { signInWithGoogle } = useContext(AuthContext);
+    const { signInWithGoogle } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
 

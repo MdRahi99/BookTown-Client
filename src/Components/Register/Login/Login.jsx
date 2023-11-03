@@ -1,14 +1,13 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../../../Contexts/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Loader from '../../Shared/Loader/Loader';
 import Title from '../../../Hooks/Title';
 import Swal from 'sweetalert2';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import useAuth from '../../../Hooks/useAuth';
 
 const Login = () => {
     Title('Login');
-    const { signIn, loading } = useContext(AuthContext);
+    const { signIn, loading } = useAuth();
 
     const location = useLocation();
     const navigate = useNavigate();

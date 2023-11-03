@@ -1,12 +1,11 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../../../../Contexts/AuthProvider';
 import Swal from 'sweetalert2';
 import Title from '../../../../Hooks/Title';
+import useAuth from '../../../../Hooks/useAuth';
 
 const SellBooks = () => {
     Title('Sell Book')
 
-    const {user} = useContext(AuthContext);
+    const {user} = useAuth();
 
     const handleForm = (e) => {
         e.preventDefault();

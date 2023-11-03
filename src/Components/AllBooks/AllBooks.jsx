@@ -1,17 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Books from './Books/Books';
 import Search from './Search/Search';
-import { AuthContext } from '../../Contexts/AuthProvider';
 import Loader from '../Shared/Loader/Loader';
 import Categories from './Categories/Categories';
 import Title from '../../Hooks/Title';
 import useBooksCategory from '../../Hooks/useBooksCategory';
+import useAuth from '../../Hooks/useAuth';
 
 const UsedBooks = () => {
     Title('Books')
     const [categories] = useBooksCategory();
 
-    const { loading } = useContext(AuthContext);
+    const { loading } = useAuth();
 
     const [books, setBooks] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');

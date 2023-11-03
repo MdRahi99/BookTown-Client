@@ -1,16 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../../../Contexts/AuthProvider';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
-import { BiEdit } from "@react-icons/all-files/bi/BiEdit";
 import { AiFillDelete } from "@react-icons/all-files/ai/AiFillDelete";
 import Swal from 'sweetalert2';
 import Title from '../../../../Hooks/Title';
+import useAuth from '../../../../Hooks/useAuth';
 
 const MyBooks = () => {
     Title('My Books')
 
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut } = useAuth();
 
     const [myBooks, setMyBooks] = useState([]);
 

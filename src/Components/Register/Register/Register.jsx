@@ -1,15 +1,14 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../../../Contexts/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
 import Loader from '../../Shared/Loader/Loader';
 import Title from '../../../Hooks/Title';
 import Swal from 'sweetalert2';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import useAuth from '../../../Hooks/useAuth';
 
 const Register = () => {
     Title('Register');
 
-    const { createUser, updateUser, logOut, signInWithGoogle, loading } = useContext(AuthContext);
+    const { createUser, updateUser, logOut, loading } = useAuth();
 
     const navigate = useNavigate();
 
