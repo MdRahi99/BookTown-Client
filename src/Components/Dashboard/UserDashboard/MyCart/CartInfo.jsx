@@ -1,11 +1,25 @@
-import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
+import { useParams } from 'react-router-dom';
 
 const CartInfo = () => {
 
-    const productInfo = useLoaderData();
+    const [productInfo ,setProductInfo] = useState([]);
+    const [axiosSecure] = useAxiosSecure();
+    const {id} = useParams();
 
-    const { _id, category, name, img, price, author } = productInfo;
+    useEffect(() => {
+        axiosSecure.get(`/carts/${id}`)
+          .then((response) => {
+            setProductInfo(response.data);
+          })
+          .catch((error) => {
+            console.error('Error fetching product:', error);
+          });
+      }, [id]);
+
+
+    const { category, name, img, price, author } = productInfo;
     const shipping = 10;
 
     const handleCheckout = () => {

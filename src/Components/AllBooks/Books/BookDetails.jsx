@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useLoaderData, useParams } from 'react-router-dom';
 import { AiFillStar } from '@react-icons/all-files/ai/AiFillStar';
 import { BiDollar } from '@react-icons/all-files/bi/BiDollar';
 import Swal from 'sweetalert2';
@@ -10,10 +10,22 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const BookDetails = () => {
     Title('Book Details')
-    const data = useLoaderData();
     const { user } = useContext(AuthContext);
+    const [data, setData] = useState([]);
     const [axiosSecure] = useAxiosSecure();
     const [,refetch] = useCart();
+    const {id} = useParams();
+    
+    useEffect(() => {
+        axiosSecure.get(`/book-details/${id}`)
+          .then((response) => {
+            setData(response.data);
+          })
+          .catch((error) => {
+            console.error('Error fetching product:', error);
+          });
+      }, [id]);
+
     const { author, category, img, name, price, rating, _id } = data;
 
     const handleAddCart = (_id) => {

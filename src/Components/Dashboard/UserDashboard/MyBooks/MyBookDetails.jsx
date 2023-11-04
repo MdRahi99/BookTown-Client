@@ -1,15 +1,28 @@
-import React, { useState } from 'react';
-import { Link, useLoaderData, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { BiEdit } from "@react-icons/all-files/bi/BiEdit";
 import UpdateBook from './UpdateBook';
 import Title from '../../../../Hooks/Title';
+import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
 
 const MyBookDetails = () => {
     Title('Book Details')
+    const {id} = useParams();
+    const [axiosSecure] = useAxiosSecure();
 
-    const bookDetails = useLoaderData();
+    const [bookDetails, setBookDetails] = useState([]);
     const [updateBtn, setUpdateBtn] = useState(false);
-    const navigate = useNavigate();
+
+    useEffect(() => {
+        axiosSecure.get(`/my-book-details/${id}`)
+          .then((response) => {
+            setBookDetails(response.data);
+          })
+          .catch((error) => {
+            console.error('Error fetching product:', error);
+          });
+      }, [id]);
+
     const { author, desc, email, img, name, price, rating, _id } = bookDetails;
 
     const handleUpdateBtn = () => {
@@ -19,7 +32,7 @@ const MyBookDetails = () => {
     return (
         <div>
             {
-                bookDetails?.email ?
+                email &&
                     <>
                         {
                             !updateBtn ?
@@ -56,8 +69,6 @@ const MyBookDetails = () => {
                                 <UpdateBook bookDetails={bookDetails} />
                         }
                     </>
-                    :
-                    navigate('/dashboard/my-books')
             }
         </div>
     );
