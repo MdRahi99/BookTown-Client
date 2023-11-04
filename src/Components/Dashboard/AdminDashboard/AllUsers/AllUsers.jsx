@@ -5,20 +5,19 @@ import { AiOutlineDelete } from '@react-icons/all-files/ai/AiOutlineDelete';
 import { FaUserShield } from '@react-icons/all-files/fa/FaUserShield';
 import Swal from 'sweetalert2';
 import useAllUsers from '../../../../Hooks/useAllUsers';
+import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
 
 const AllUsers = () => {
 
     Title('All Users');
 
     const [users, refetch] = useAllUsers();
+    const [axiosSecure] = useAxiosSecure();
 
     const handleUpdate = (user) => {
-        fetch(`https://book-town-server.vercel.app/users/admin/${user._id}`, {
-            method: 'PATCH'
-        })
-        .then(res => res.json())
+        axiosSecure.patch(`/users/admin/${user._id}`)
         .then(data => {
-            if(data.modifiedCount > 0){
+            if(data.data.modifiedCount > 0){
                 refetch();
                 Swal.fire({
                     title: `${user.name} is Admin Now`,
@@ -29,12 +28,9 @@ const AllUsers = () => {
         })
     }
     const handleDelete = (user) => {
-        fetch(`https://book-town-server.vercel.app/users/${user._id}`, {
-            method: 'DELETE'
-        })
-        .then(res => res.json())
+        axiosSecure.delete(`/users/${user._id}`)
         .then(data => {
-            if(data.deletedCount > 0){
+            if(data.data.deletedCount > 0){
                 refetch();
                 Swal.fire({
                     title: `User: ${user.name} Deleted Successfully`,

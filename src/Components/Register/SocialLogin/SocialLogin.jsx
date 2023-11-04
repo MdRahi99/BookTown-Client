@@ -1,15 +1,14 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import { FcGoogle } from '@react-icons/all-files/fc/FcGoogle';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const SocialLogin = () => {
 
     const { signInWithGoogle } = useAuth();
-    const location = useLocation();
+    const [axiosSecure] = useAxiosSecure();
     const navigate = useNavigate();
-
-    const from = location.state?.from?.pathname || '/';
     const googleProvider = new GoogleAuthProvider();
 
     const handleGoogleLogin = () => {
@@ -17,14 +16,8 @@ const SocialLogin = () => {
             .then(result => {
                 const user = result.user;
                 const saveUser = { name: user.displayName, email: user.email }
-                fetch('https://book-town-server.vercel.app/users', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(saveUser)
-                })
-                    .then(res => res.json())
+
+                axiosSecure.post('/users', saveUser)
                     .then(() => {
                         navigate('/');
                     })

@@ -6,11 +6,13 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import Title from '../../../Hooks/Title';
 import useCart from '../../../Hooks/useCart';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const BookDetails = () => {
     Title('Book Details')
     const data = useLoaderData();
     const { user } = useContext(AuthContext);
+    const [axiosSecure] = useAxiosSecure();
     const [,refetch] = useCart();
     const { author, category, img, name, price, rating, _id } = data;
 
@@ -18,23 +20,18 @@ const BookDetails = () => {
         if (user && user.email) {
             const cartItem = { email: user.email, menuItemId: _id, name, img, price, rating, category, author };
 
-            fetch('https://book-town-server.vercel.app/carts', {
-                method: 'POST',
-                headers: {
-                    "content-type": "application/json"
-                },
-                body: JSON.stringify(cartItem)
-            })
-                .then(res => res.json())
+            axiosSecure.post('/carts', cartItem)
                 .then(data => {
                     refetch();
-                    if (data && user?.email) {
+                    if (data.data && user?.email) {
                         Swal.fire({
                             title: 'Item Added Successfully',
                             icon: 'success',
                             confirmButtonText: 'Ok'
                         })
                     }
+                }) .catch(error => {
+                    console.log(error);
                 })
         }
     }

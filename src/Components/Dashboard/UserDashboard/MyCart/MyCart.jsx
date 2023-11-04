@@ -5,10 +5,12 @@ import { MdPayment } from '@react-icons/all-files/md/MdPayment';
 import { AiOutlineDelete } from '@react-icons/all-files/ai/AiOutlineDelete';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
 
 const MyCart = () => {
 
     Title('My Cart');
+    const [axiosSecure] = useAxiosSecure();
     const [cart, refetch] = useCart();
 
     const handleDelete = (id) => {
@@ -21,12 +23,9 @@ const MyCart = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://book-town-server.vercel.app/delete-cart/${id}`, {
-                    method: 'DELETE'
-                })
-                    .then(res => res.json())
+                axiosSecure.delete(`/delete-cart/${id}`)
                     .then(data => {
-                        if (data.deletedCount > 0) {
+                        if (data.data.deletedCount > 0) {
                             refetch()
                             Swal.fire(
                                 'Deleted!',

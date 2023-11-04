@@ -1,11 +1,13 @@
 import Swal from 'sweetalert2';
 import Title from '../../../../Hooks/Title';
 import useAuth from '../../../../Hooks/useAuth';
+import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
 
 const SellBooks = () => {
     Title('Sell Book')
 
     const {user} = useAuth();
+    const [axiosSecure] = useAxiosSecure();
 
     const handleForm = (e) => {
         e.preventDefault();
@@ -18,17 +20,10 @@ const SellBooks = () => {
         const price = form.price.value;
         const desc = form.desc.value;
         const info = { email, img, name, author, rating, price, desc };
-        console.log(info)
-        fetch('https://book-town-server.vercel.app/add-book', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(info)
-        })
-            .then(res => res.json())
+
+        axiosSecure.post('/add-book', info)
             .then(data => {
-                if (data.insertedId) {
+                if (data.data.insertedId) {
                     Swal.fire({
                         title: 'Added Successfully',
                         icon: 'success',

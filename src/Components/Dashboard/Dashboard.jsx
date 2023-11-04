@@ -9,7 +9,6 @@ const Dashboard = () => {
 
     const [isAdmin] = useAdmin();
 
-
     return (
         <div>
             {

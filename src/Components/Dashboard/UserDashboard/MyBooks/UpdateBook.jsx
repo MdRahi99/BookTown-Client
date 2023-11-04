@@ -2,12 +2,14 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import Title from '../../../../Hooks/Title';
 import useAuth from '../../../../Hooks/useAuth';
+import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
 
 const UpdateBook = ({ bookDetails }) => {
     Title('Update Book')
 
     const { author, desc, email, img, name, price, rating, _id } = bookDetails;
     const { user } = useAuth();
+    const [axiosSecure] = useAxiosSecure();
     const navigate = useNavigate();
 
     const handleUpdateForm = (e) => {
@@ -21,17 +23,10 @@ const UpdateBook = ({ bookDetails }) => {
         const price = form.price.value;
         const desc = form.desc.value;
         const info = { email, img, name, author, rating, price, desc };
-        console.log(info)
-        fetch(`https://book-town-server.vercel.app/update-book/${_id}`, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(info)
-        })
-            .then(res => res.json())
+
+        axiosSecure.put(`/update-book/${_id}`,info)
             .then(data => {
-                if (data.modifiedCount > 0) {
+                if (data.data.modifiedCount > 0) {
                     Swal.fire({
                         title: 'Updated Successfully',
                         icon: 'success',

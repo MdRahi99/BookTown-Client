@@ -5,27 +5,23 @@ import { AiFillDelete } from "@react-icons/all-files/ai/AiFillDelete";
 import Swal from 'sweetalert2';
 import Title from '../../../../Hooks/Title';
 import useAuth from '../../../../Hooks/useAuth';
+import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
 
 const MyBooks = () => {
     Title('My Books')
 
     const { user, logOut } = useAuth();
+    const [axiosSecure] = useAxiosSecure();
 
     const [myBooks, setMyBooks] = useState([]);
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`https://book-town-server.vercel.app/my-books?email=${user?.email}`, {
-            method: 'GET',
-            headers: {
-                authorization: `Bearer ${localStorage.getItem('BookTown-Access-Token')}`
-            }
-        })
-            .then(res => res.json())
+        axiosSecure.get(`/my-books?email=${user?.email}`)
             .then(data => {
-                if (!data.error) {
-                    setMyBooks(data);
+                if (!data.data.error) {
+                    setMyBooks(data.data);
                 }
                 else {
                     logOut()
@@ -47,12 +43,9 @@ const MyBooks = () => {
         })
             .then((result) => {
                 if (result.isConfirmed) {
-                    fetch(`https://book-town-server.vercel.app/delete-book/${_id}`, {
-                        method: 'DELETE'
-                    })
-                        .then(res => res.json())
+                    axiosSecure.delete(`/delete-book/${_id}`)
                         .then(data => {
-                            if (data.deletedCount > 0) {
+                            if (data.data.deletedCount > 0) {
                                 Swal.fire({
                                     icon: 'success',
                                     title: 'Success',

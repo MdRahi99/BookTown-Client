@@ -1,8 +1,11 @@
 import React from 'react';
 import Title from '../../Hooks/Title';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const Contact = () => {
-    Title('Contact')
+    Title('Contact');
+    const [axiosSecure] = useAxiosSecure();
 
     const handleForm = (e) => {
         e.preventDefault();
@@ -11,18 +14,15 @@ const Contact = () => {
         const email = form.email.value;;
         const desc = form.desc.value;
         const info = { name, email, desc };
-        console.log(info)
-        fetch('https://book-town-server.vercel.app/contact-info', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(info)
-        })
-            .then(res => res.json())
+
+        axiosSecure.post('/contact-info', info)
             .then(data => {
-                if (data.insertedId) {
-                    alert('Form Submitted Successfully!')
+                if (data.data.insertedId) {
+                    Swal.fire({
+                        title: 'Form Submitted Successfully!',
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
                     form.reset();
                 }
             })

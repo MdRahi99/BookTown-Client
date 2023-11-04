@@ -38,6 +38,8 @@ import AllUsers from "../Components/Dashboard/AdminDashboard/AllUsers/AllUsers";
 import AdminRoute from "./AdminRoute";
 // --------------- Admin Dashboard Ends --------------- //
 
+import useAxiosSecure from "../Hooks/useAxiosSecure";
+
 const router = createBrowserRouter([
     // ----------- Contents Routes -----------
     {
@@ -55,7 +57,9 @@ const router = createBrowserRouter([
             {
                 path: "/book-details/:id",
                 loader: async ({ params }) => {
-                    return fetch(`https://book-town-server.vercel.app/book-details/${params.id}`);
+                    const [axiosSecure] = useAxiosSecure();
+                    const response = await axiosSecure.get(`/book-details/${params.id}`);
+                    return response.data;
                 },
                 element: <PrivateRoute><BookDetails /></PrivateRoute>
             },
@@ -96,7 +100,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/my-book-details/:id',
-                loader: ({ params }) => fetch(`https://book-town-server.vercel.app/my-book-details/${params.id}`),
+                loader: async ({ params }) => {
+                    const [axiosSecure] = useAxiosSecure();
+                    const response = await axiosSecure.get(`/my-book-details/${params.id}`);
+                    return response.data;
+                },
                 element: <PrivateRoute><MyBookDetails></MyBookDetails></PrivateRoute>
             },
             {
@@ -105,7 +113,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "/dashboard/product-info/:id",
-                loader: ({params}) => fetch(`https://book-town-server.vercel.app/carts/${params.id}`),
+                loader: async ({ params }) => {
+                    const [axiosSecure] = useAxiosSecure();
+                    const response = await axiosSecure.get(`/carts/${params.id}`);
+                    return response.data;
+                },
                 element: <PrivateRoute><CartInfo /></PrivateRoute>
             },
             {

@@ -4,11 +4,13 @@ import Title from '../../../Hooks/Title';
 import Swal from 'sweetalert2';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import useAuth from '../../../Hooks/useAuth';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const Register = () => {
     Title('Register');
 
     const { createUser, updateUser, logOut, loading } = useAuth();
+    const [axiosSecure] = useAxiosSecure();
 
     const navigate = useNavigate();
 
@@ -32,16 +34,9 @@ const Register = () => {
                 updateUser(userProfile)
                     .then(() => {
                         const saveUser = { name: user.displayName, email: user.email }
-                        fetch('https://book-town-server.vercel.app/users', {
-                            method: 'POST',
-                            headers: {
-                                'content-type': 'application/json'
-                            },
-                            body: JSON.stringify(saveUser)
-                        })
-                            .then(res => res.json())
+                        axiosSecure.post('/users', saveUser)
                             .then(data => {
-                                if (data.insertedId) {
+                                if (data.data.insertedId) {
                                     form.reset();
                                     Swal.fire({
                                         icon: 'success',

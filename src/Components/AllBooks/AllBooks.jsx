@@ -6,13 +6,14 @@ import Categories from './Categories/Categories';
 import Title from '../../Hooks/Title';
 import useBooksCategory from '../../Hooks/useBooksCategory';
 import useAuth from '../../Hooks/useAuth';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const UsedBooks = () => {
     Title('Books')
     const [categories] = useBooksCategory();
 
     const { loading } = useAuth();
-
+    const [axiosSecure] = useAxiosSecure();
     const [books, setBooks] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
     const [asc, setAsc] = useState(true);
@@ -20,9 +21,8 @@ const UsedBooks = () => {
 
     useEffect(() => {
         const bookData = async () => {
-            const data = await fetch(`https://book-town-server.vercel.app/books-details?search=${search}&sort=${asc ? 'asc' : 'desc'}`)
-            const result = await data.json();
-            setBooks(result);
+            const data = await axiosSecure.get(`/books-details?search=${search}&sort=${asc ? 'asc' : 'desc'}`)
+            setBooks(data.data);
         }
 
         bookData();
