@@ -1,19 +1,15 @@
 import { Link, NavLink } from "react-router-dom";
 import { RiLoginCircleFill } from "@react-icons/all-files/ri/RiLoginCircleFill";
-import {BiCart} from '@react-icons/all-files/bi/BiCart'
+import { BiCart } from '@react-icons/all-files/bi/BiCart'
 import "./Header.css";
+import useAdmin from "../../../Hooks/useAdmin";
 import useCart from "../../../Hooks/useCart";
 import useAuth from "../../../Hooks/useAuth";
 
 const Header = () => {
-  const { user, logOut } = useAuth();
+  const { user } = useAuth();
 
-  const handleLogOut = () => {
-    logOut()
-      .then(() => { })
-      .catch((error) => console.log(error));
-  };
-
+  const [isAdmin] = useAdmin();
   const [cart] = useCart();
 
   return (
@@ -109,10 +105,13 @@ const Header = () => {
       <div className="navbar-end font-wallPoet uppercase text-xl flex">
         {user?.email ? (
           <div className="flex items-center gap-8 lg:gap-12">
-            <Link to='/dashboard/my-cart' className="indicator">
-              <span className="indicator-item badge badge-accent">{cart?.length || 0}</span>
-              <button className="text-black text-4xl"><BiCart /></button>
-            </Link>
+            {
+              !isAdmin &&
+              <Link to='/dashboard/my-cart' className="indicator">
+                <span className="indicator-item badge badge-accent">{cart?.length || 0}</span>
+                <button className="text-black text-4xl"><BiCart /></button>
+              </Link>
+            }
             <Link
               className="dropdown dropdown-end p-2 hover:bg-[#484848] text-sm bg-black rounded-xl text-white"
               to='/dashboard'>

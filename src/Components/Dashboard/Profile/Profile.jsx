@@ -10,7 +10,7 @@ const Profile = () => {
     return (
         <div>
             {
-                isAdmin?.admin ?
+                isAdmin ?
                     <AdminProfile />
                     :
                     <UserProfile />

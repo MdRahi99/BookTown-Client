@@ -12,7 +12,7 @@ const Dashboard = () => {
     return (
         <div>
             {
-                isAdmin?.admin ?
+                isAdmin ?
                     <AdminDashboard />
                     :
                     <UserDashboard />
