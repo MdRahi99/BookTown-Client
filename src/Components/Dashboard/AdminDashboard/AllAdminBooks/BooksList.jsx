@@ -4,6 +4,7 @@ import { FaEdit } from '@react-icons/all-files/fa/FaEdit';
 import useBooks from '../../../../Hooks/useBooks';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
+import { Link } from 'react-router-dom';
 
 const BooksList = ({ books }) => {
 
@@ -63,8 +64,11 @@ const BooksList = ({ books }) => {
                                 <td>{name}</td>
                                 <td>{author}</td>
                                 <td>${price}</td>
-                                <td className=''><FaEdit className='ml-4 text-xl text-orange-600 hover:text-orange-700' /></td>
-                                <td><button onClick={()=>handleDelete(_id)}>
+
+                                <td><Link to={`/dashboard/admin-book-details/${_id}`}>
+                                    <FaEdit className='ml-4 text-xl text-orange-600 hover:text-orange-700' /></Link></td>
+
+                                <td><button onClick={() => handleDelete(_id)}>
                                     <AiFillDelete className='ml-4 text-xl text-orange-600 hover:text-orange-700' />
                                 </button></td>
                             </tr>
