@@ -24,7 +24,6 @@ const BookInfo = () => {
     }, [id]);
 
     const { author, desc, email, img, name, price, rating, _id } = bookDetails;
-    console.log(bookDetails);
 
     const handleUpdateBtn = () => {
         setUpdateBtn(true);
