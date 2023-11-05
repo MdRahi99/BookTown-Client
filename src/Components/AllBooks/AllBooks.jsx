@@ -1,37 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Books from './Books/Books';
 import Search from './Search/Search';
-import Loader from '../Shared/Loader/Loader';
 import Categories from './Categories/Categories';
 import Title from '../../Hooks/Title';
 import useBooksCategory from '../../Hooks/useBooksCategory';
-import useAuth from '../../Hooks/useAuth';
-import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import useBooks from '../../Hooks/useBooks';
 
 const UsedBooks = () => {
     Title('Books')
     const [categories] = useBooksCategory();
 
-    const { loading } = useAuth();
-    const [axiosSecure] = useAxiosSecure();
-    const [books, setBooks] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
-    const [asc, setAsc] = useState(true);
-    const [search, setSearch] = useState('');
-
-    useEffect(() => {
-        const bookData = async () => {
-            const data = await axiosSecure.get(`/books-details?search=${search}&sort=${asc ? 'asc' : 'desc'}`)
-            setBooks(data.data);
-        }
-
-        bookData();
-
-    }, [asc, search]);
-
-    if (loading) {
-        return <Loader></Loader>
-    };
+    const [books, refetch, asc, setAsc, setSearch] = useBooks();
 
     const handleCategory = (category) => {
         setSelectedCategory(category)

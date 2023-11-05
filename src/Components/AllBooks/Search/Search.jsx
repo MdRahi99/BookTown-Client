@@ -1,3 +1,4 @@
+import { AiFillDelete } from '@react-icons/all-files/ai/AiFillDelete';
 import React, { useRef } from 'react';
 
 const Search = ({ setSearch }) => {
@@ -8,30 +9,29 @@ const Search = ({ setSearch }) => {
         e.preventDefault();
         setSearch(searchRef.current.value)
     };
-    const handleClear = () => {
-        setSearch(searchRef);
+    const handleClear = (e) => {
+        e.preventDefault();
+        setSearch('');
+        searchRef.current.value = '';
     };
 
     return (
-        <div className='mb-12 flex flex-col'>
+        <div className='mb-12 flex justify-between items-center'>
             <form
                 onChange={handleSearch}
-                className='flex gap-3 items-center justify-center'
+                className='flex w-full gap-3 items-center justify-center'
             >
                 <input type="text" ref={searchRef} placeholder="Search here"
                     className="input border-2 focus:border-none border-black rounded-xl w-full max-w-md"
                 />
-                <button
-                    onClick={handleSearch}
-                    className="btn btn-outline border-2 border-black rounded-xl">
-                    Search
-                </button>
+                <div>
+                    <button
+                        onClick={handleClear}
+                        className=" border-2 p-3 rounded-xl border-black hover:bg-black hover:text-white">
+                        <AiFillDelete className='text-2xl' />
+                    </button>
+                </div>
             </form>
-            <button
-                onClick={handleClear}
-                className="border-2 w-16 mt-6 mx-auto px-3 border-black rounded-lg font-bold hover:bg-black hover:text-white">
-                Clear
-            </button>
         </div>
     );
 };
