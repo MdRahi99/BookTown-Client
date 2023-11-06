@@ -51,7 +51,7 @@ const MyCart = () => {
                 </h1>
                 <div className='divider'><GrLinkNext className='text-5xl' /></div>
                 <Link
-                    to=''
+                    to='/dashboard/payment'
                     className='text-lg text-white bg-orange-500 rounded-xl hover:bg-black hover:text-white w-24 px-1 py-1 font-trainOne font-semibold text-center uppercase ml-3'>
                     Pay
                 </Link>
