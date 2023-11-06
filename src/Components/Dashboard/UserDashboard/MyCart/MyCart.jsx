@@ -1,17 +1,18 @@
 import React from 'react';
 import Title from '../../../../Hooks/Title';
 import useCart from "../../../../Hooks/useCart";
-import { MdPayment } from '@react-icons/all-files/md/MdPayment';
-import { AiOutlineDelete } from '@react-icons/all-files/ai/AiOutlineDelete';
-import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
+import CartTable from './CartTable';
+import { GrLinkNext } from '@react-icons/all-files/gr/GrLinkNext';
+import { Link } from 'react-router-dom';
 
 const MyCart = () => {
 
     Title('My Cart');
     const [axiosSecure] = useAxiosSecure();
     const [cart, refetch] = useCart();
+    let price = 0;
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -40,30 +41,24 @@ const MyCart = () => {
 
     return (
         <div className='mx-4 my-6'>
-            <h1 className='text-xl font-bold text-center p-4 border-b-2 border-black uppercase mb-6 rounded-xl'>Added Books</h1>
-            <div className='grid grid-cols-1 gap-5'>
-                {
-                    cart.map(book => {
-                        const { _id, name, price } = book;
-                        return <div key={_id}
-                            className='bg-slate-300 border-y-2 border-black p-3 rounded-xl'>
-                            <div className='flex w-full items-center justify-between gap-8'>
-                                <div className='flex flex-col lg:flex-row w-full items-center gap-4'>
-                                    <h1 className='text-lg font-bold w-full lg:w-1/3 opacity-80 rounded-xl px-2 py-1 bg-black text-white'>Name:<span className='py-1 rounded text-white ml-1'> {name}</span></h1>
-                                    <h1 className='text-lg font-bold w-full lg:w-1/3 opacity-80 rounded-xl px-2 py-1 bg-black black text-white'>Price:<span className='py-1 rounded ml-1'>${price}</span></h1>
-                                </div>
-                                <Link to={`/dashboard/product-info/${_id}`}
-                                    className='text-2xl font-bold hover:text-slate-600' title='Checkout'>
-                                    <MdPayment />
-                                </Link>
-                                <button onClick={() => handleDelete(_id)} className='text-2xl text-orange-600 font-bold hover:text-orange-800' title='Delete'>
-                                    <AiOutlineDelete />
-                                </button>
-                            </div>
-                        </div>
-                    })
-                }
+            <div className='flex flex-col lg:flex-row items-center justify-between gap-4 mb-6 rounded-xl border-b-2 border-black p-2'>
+                <h1 className='text-xl font-bold text-center uppercase'>Total Items: <span className='text-white bg-orange-400 px-3 py-1'>{cart.length}</span></h1>
+                <div className='divider'><GrLinkNext className='text-5xl' /></div>
+                <h1 className='text-xl font-bold text-center uppercase '>Total Price:
+                    <span className='ml-2 text-white bg-orange-400 px-3 py-1'>
+                        ${cart.reduce((total, item) => total + parseFloat(item.price), 0)}
+                    </span>
+                </h1>
+                <div className='divider'><GrLinkNext className='text-5xl' /></div>
+                <Link
+                    to=''
+                    className='text-lg text-white bg-orange-500 rounded-xl hover:bg-black hover:text-white w-24 px-1 py-1 font-trainOne font-semibold text-center uppercase ml-3'>
+                    Pay
+                </Link>
             </div>
+            <CartTable
+                cart={cart}
+                handleDelete={handleDelete} />
         </div>
     );
 };

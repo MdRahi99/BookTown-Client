@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const CartInfo = () => {
 
-    const [productInfo ,setProductInfo] = useState([]);
+    const [productInfo, setProductInfo] = useState([]);
     const [axiosSecure] = useAxiosSecure();
-    const {id} = useParams();
+    const { id } = useParams();
 
     useEffect(() => {
         axiosSecure.get(`/carts/${id}`)
-          .then((response) => {
-            setProductInfo(response.data);
-          })
-          .catch((error) => {
-            console.error('Error fetching product:', error);
-          });
-      }, [id]);
+            .then((response) => {
+                setProductInfo(response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching product:', error);
+            });
+    }, [id]);
 
 
     const { category, name, img, price, author } = productInfo;
@@ -46,7 +46,10 @@ const CartInfo = () => {
                 <p className='text-lg'>Subtotal: <span className='text-orange-500 font-bold'>${price}</span></p>
                 <p className='text-lg'>Shipping: <span className='text-orange-500 font-bold'>${shipping}</span></p>
                 <p className='text-lg'>Total: <span className='text-orange-500 font-bold'>${price + shipping}</span></p>
-                <button onClick={handleCheckout} className='bg-black text-white p-1 rounded-xl font-bold hover:bg-[#3b3a3a]'>Checkout</button>
+                <div className='flex items-center gap-2'>
+                    <button onClick={handleCheckout} className='w-full bg-black text-white p-1 rounded-xl font-bold hover:bg-[#3b3a3a]'>Pay</button>
+                    <Link to='/dashboard/my-cart' className='w-full text-center bg-black text-white p-1 rounded-xl font-bold hover:bg-[#3b3a3a]'>Back</Link>
+                </div>
             </div>
         </div>
     );
