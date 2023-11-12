@@ -30,6 +30,7 @@ import SellBooks from "../Components/Dashboard/UserDashboard/SellBooks/SellBooks
 import MyBooks from "../Components/Dashboard/UserDashboard/MyBooks/MyBooks";
 import MyBookDetails from "../Components/Dashboard/UserDashboard/MyBooks/MyBookDetails";
 import MyCart from "../Components/Dashboard/UserDashboard/MyCart/MyCart";
+import Payment from "../Components/Dashboard/UserDashboard/MyCart/Payment/Payment";
 // --------------- User Dashboard Ends --------------- //
 
 // --------------- Admin Dashboard Starts --------------- //
@@ -38,7 +39,6 @@ import AllUsers from "../Components/Dashboard/AdminDashboard/AllUsers/AllUsers";
 import AllAdminBooks from "../Components/Dashboard/AdminDashboard/AllAdminBooks/AllAdminBooks";
 import AddBook from "../Components/Dashboard/AdminDashboard/AddBook/AddBook";
 import BookInfo from "../Components/Dashboard/AdminDashboard/AllAdminBooks/BookInfo";
-import Payment from "../Components/Dashboard/UserDashboard/MyCart/Payment/Payment";
 // --------------- Admin Dashboard Ends --------------- //
 
 const router = createBrowserRouter([
@@ -103,7 +103,7 @@ const router = createBrowserRouter([
                 element: <PrivateRoute><MyCart /></PrivateRoute>
             },
             {
-                path: "/dashboard/payment",
+                path: "/dashboard/payment/:id",
                 element: <PrivateRoute><Payment /></PrivateRoute>
             },
             {

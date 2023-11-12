@@ -42,18 +42,12 @@ const MyCart = () => {
         <div className='mx-4 my-6'>
             <div className='flex flex-col lg:flex-row items-center justify-between gap-4 mb-6 rounded-xl border-b-2 border-black p-2'>
                 <h1 className='text-xl font-bold text-center uppercase'>Total Items: <span className='text-white bg-orange-400 px-3 py-1'>{cart.length}</span></h1>
-                <div className='divider'><GrLinkNext className='text-5xl' /></div>
+                <div className='divider w-1/3'><GrLinkNext className='text-5xl' /></div>
                 <h1 className='text-xl font-bold text-center uppercase '>Total Price:
                     <span className='ml-2 text-white bg-orange-400 px-3 py-1'>
                         ${cart.reduce((total, item) => total + parseFloat(item.price), 0)}
                     </span>
                 </h1>
-                <div className='divider'><GrLinkNext className='text-5xl' /></div>
-                <Link
-                    to='/dashboard/payment'
-                    className='text-lg text-white bg-orange-500 rounded-xl hover:bg-black hover:text-white w-24 px-1 py-1 font-trainOne font-semibold text-center uppercase ml-3'>
-                    Pay
-                </Link>
             </div>
             <CartTable
                 cart={cart}
