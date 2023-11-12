@@ -20,7 +20,7 @@ const Payment = () => {
                 }
             </div>
             <div className="col-span-12 lg:col-span-6 w-full p-10 shadow-2xl rounded-xl">
-                <CheckoutInfo />
+                <CheckoutInfo cart={cart} price={price} />
             </div>
         </div>
     );
