@@ -49,8 +49,8 @@ const CartTable = ({ cart, handleDelete }) => {
                                             <AiOutlineDelete />
                                         </button>
                                         <div className='divider divider-vertical'>OR</div>
-                                        <Link to={`/dashboard/product-info/${_id}`} className='ml-3 text-lg text-orange-600 font-bold hover:text-orange-800' title='details'>
-                                            View
+                                        <Link to='/dashboard/payment'className='ml-3 text-lg text-orange-600 font-bold hover:text-orange-800' title='details'>
+                                            Pay
                                         </Link>
                                     </div>
                                 </th>

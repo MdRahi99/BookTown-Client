@@ -12,7 +12,6 @@ const MyCart = () => {
     Title('My Cart');
     const [axiosSecure] = useAxiosSecure();
     const [cart, refetch] = useCart();
-    let price = 0;
 
     const handleDelete = (id) => {
         Swal.fire({

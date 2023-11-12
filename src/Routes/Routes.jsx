@@ -30,7 +30,6 @@ import SellBooks from "../Components/Dashboard/UserDashboard/SellBooks/SellBooks
 import MyBooks from "../Components/Dashboard/UserDashboard/MyBooks/MyBooks";
 import MyBookDetails from "../Components/Dashboard/UserDashboard/MyBooks/MyBookDetails";
 import MyCart from "../Components/Dashboard/UserDashboard/MyCart/MyCart";
-import CartInfo from "../Components/Dashboard/UserDashboard/MyCart/CartInfo";
 // --------------- User Dashboard Ends --------------- //
 
 // --------------- Admin Dashboard Starts --------------- //
@@ -102,10 +101,6 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/my-cart",
                 element: <PrivateRoute><MyCart /></PrivateRoute>
-            },
-            {
-                path: "/dashboard/product-info/:id",
-                element: <PrivateRoute><CartInfo /></PrivateRoute>
             },
             {
                 path: "/dashboard/payment",
