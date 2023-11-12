@@ -25,7 +25,7 @@ const UserProfile = () => {
     };
 
     return (
-        <div className='bg-black rounded-2xl'>
+        <div className='print:hidden bg-black rounded-2xl'>
             <div className='flex flex-col gap-2 items-center p-4 justify-center'>
                 <img className='w-24 h-24 border-4 border-double border-[#f1f3f4] rounded-full' src={user?.photoURL} alt="" />
                 <h3 className='text-xl text-white font-wallPoet'>{user?.displayName}</h3>

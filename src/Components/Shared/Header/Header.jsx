@@ -13,7 +13,7 @@ const Header = () => {
   const [cart] = useCart();
 
   return (
-    <div className="navbar w-full lg:w-11/12 mx-auto border-dashed border-b-2 rounded-2xl border-black">
+    <div className="navbar print:hidden w-full lg:w-11/12 mx-auto border-dashed border-b-2 rounded-2xl border-black">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
