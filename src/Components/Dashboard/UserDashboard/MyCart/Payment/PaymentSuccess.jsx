@@ -15,6 +15,10 @@ const PaymentSuccess = () => {
         setOrder(data.data)
     })
 
+    if(!order?._id){
+        return <h1 className='text-2xl text-center text-orange-600 p-10 mt-10 lg:mt-40 font-bold'>No Order Found</h1>
+    }
+
     const { address, category, currency, email, firstName, lastName, name, paid, paidAt, phone, postcode, price, transactionId, _id } = order;
 
     return (
