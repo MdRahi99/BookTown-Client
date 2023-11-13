@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 
@@ -11,9 +11,15 @@ const PaymentSuccess = () => {
     const tId = query.get('transactionId');
     const [order, setOrder] = useState({});
 
-    axiosSecure.get(`/orders/by-transaction-id/${tId}`).then(data => {
-        setOrder(data.data)
-    })
+    useEffect(() => {
+        axiosSecure.get(`/orders/by-transaction-id/${tId}`)
+          .then((response) => {
+            setOrder(response.data);
+          })
+          .catch((error) => {
+            console.error('Error fetching product:', error);
+          });
+      }, [tId]);
 
     if(!order?._id){
         return <h1 className='text-2xl text-center text-orange-600 p-10 mt-10 lg:mt-40 font-bold'>No Order Found</h1>
