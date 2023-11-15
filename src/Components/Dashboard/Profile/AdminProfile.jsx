@@ -38,9 +38,13 @@ const AdminProfile = () => {
                     <AiOutlineUsergroupAdd />
                     <h3 className='hidden lg:block'>All Users</h3>
                 </Link>
-                <Link to='/dashboard/all-admin-books' title='Users' className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
+                <Link to='/dashboard/all-admin-books' title='Books' className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
                     <IoIosBook />
                     <h3 className='hidden lg:block'>All Books</h3>
+                </Link>
+                <Link to='/dashboard/all-payments' title='All Payments' className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
+                    <IoIosBook />
+                    <h3 className='hidden lg:block'>All Payments</h3>
                 </Link>
                 <Link to='/dashboard/add-book' title='Add Book' className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
                     <ImBooks />

@@ -41,6 +41,7 @@ import AllUsers from "../Components/Dashboard/AdminDashboard/AllUsers/AllUsers";
 import AllAdminBooks from "../Components/Dashboard/AdminDashboard/AllAdminBooks/AllAdminBooks";
 import AddBook from "../Components/Dashboard/AdminDashboard/AddBook/AddBook";
 import BookInfo from "../Components/Dashboard/AdminDashboard/AllAdminBooks/BookInfo";
+import AllPayments from "../Components/Dashboard/AdminDashboard/AllPayments/AllPayments";
 // --------------- Admin Dashboard Ends --------------- //
 
 const router = createBrowserRouter([
@@ -128,6 +129,10 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/all-admin-books",
                 element: <AdminRoute><AllAdminBooks /></AdminRoute>
+            },
+            {
+                path: "/dashboard/all-payments",
+                element: <AdminRoute><AllPayments /></AdminRoute>
             },
             {
                 path: "/dashboard/admin-book-details/:id",
