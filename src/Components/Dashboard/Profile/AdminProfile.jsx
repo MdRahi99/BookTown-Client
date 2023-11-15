@@ -1,6 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { RiDashboardFill } from '@react-icons/all-files/ri/RiDashboardFill';
 import {AiOutlineUsergroupAdd} from '@react-icons/all-files/ai/AiOutlineUsergroupAdd';
+import { MdPayments } from "react-icons/md";
 import {IoIosBook} from '@react-icons/all-files/io/IoIosBook'
 import {ImBooks} from '@react-icons/all-files/im/ImBooks';
 import useAuth from '../../../Hooks/useAuth';
@@ -43,7 +44,7 @@ const AdminProfile = () => {
                     <h3 className='hidden lg:block'>All Books</h3>
                 </Link>
                 <Link to='/dashboard/all-payments' title='All Payments' className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
-                    <IoIosBook />
+                    <MdPayments />
                     <h3 className='hidden lg:block'>All Payments</h3>
                 </Link>
                 <Link to='/dashboard/add-book' title='Add Book' className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
