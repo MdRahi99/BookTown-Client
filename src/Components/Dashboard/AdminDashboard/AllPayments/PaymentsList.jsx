@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
 import { AiFillDelete } from '@react-icons/all-files/ai/AiFillDelete';
 import { FaEdit } from '@react-icons/all-files/fa/FaEdit';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
-import { Link } from 'react-router-dom';
 import useAllPayments from '../../../../Hooks/useAllPayments';
 
 const PaymentsList = ({ payments }) => {
 
     const [, refetch] = useAllPayments();
     const [axiosSecure] = useAxiosSecure();
-    const [status, setStatus] = useState(false);
 
     const handleDelete = (_id) => {
         Swal.fire({
@@ -52,19 +49,12 @@ const PaymentsList = ({ payments }) => {
         })
             .then((result) => {
                 if (result.isConfirmed) {
-                    axiosSecure.put(`/update-payment-status/${_id}`)
-                        .then(data => {
-                            if (data.data.matchedCount > 0) {
-                                refetch();
-                                setStatus(true)
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Success',
-                                    text: 'Updated Successfully!!!',
-                                    confirmButtonText: 'Ok'
-                                })
-                            }
-                        })
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Updated Successfully!!!',
+                        confirmButtonText: 'Ok'
+                    })
                 }
                 else if (result.isDenied) {
                     Swal.fire('Changes are not saved', '', 'info')
@@ -95,7 +85,7 @@ const PaymentsList = ({ payments }) => {
                 <tbody>
                     {
                         payments.map((payment, index) => {
-                            const { _id, name, firstName, lastName, paid, transactionId, phone, postcode, product, address, price } = payment;
+                            const { _id, name, firstName, lastName, paid, transactionId, phone, postcode, address, price } = payment;
                             return <tr key={_id}>
                                 <th>{index + 1}</th>
                                 <td className='font-bold'>{name}</td>
@@ -114,13 +104,8 @@ const PaymentsList = ({ payments }) => {
                                 </td>
 
                                 <td>
-                                    {
-                                        !status ?
-                                    <button onClick={() => handleUpdate(product)}>
+                                    <button onClick={() => handleUpdate()}>
                                         <FaEdit className='ml-4 text-xl text-orange-600 hover:text-orange-700' /></button>
-                                        :
-                                        <h1 className='font-bold'>Completed</h1>
-                                    }
                                 </td>
 
                                 <td><button onClick={() => handleDelete(_id)}>

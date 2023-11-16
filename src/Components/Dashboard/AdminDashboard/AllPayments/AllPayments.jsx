@@ -1,7 +1,6 @@
 import React from 'react';
 import useAllPayments from '../../../../Hooks/useAllPayments';
 import PaymentsList from './PaymentsList';
-import { Link } from 'react-router-dom';
 
 const AllPayments = () => {
 
