@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AiFillDelete } from '@react-icons/all-files/ai/AiFillDelete';
 import { FaEdit } from '@react-icons/all-files/fa/FaEdit';
 import Swal from 'sweetalert2';
@@ -10,6 +10,7 @@ const PaymentsList = ({ payments }) => {
 
     const [, refetch] = useAllPayments();
     const [axiosSecure] = useAxiosSecure();
+    const [status, setStatus] = useState(false);
 
     const handleDelete = (_id) => {
         Swal.fire({
@@ -42,6 +43,38 @@ const PaymentsList = ({ payments }) => {
             });
     };
 
+    const handleUpdate = (_id) => {
+        Swal.fire({
+            title: 'Are you sure you want to Update Status',
+            showCancelButton: true,
+            confirmButtonText: 'Ok',
+            denyButtonText: `Cancel`,
+        })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    axiosSecure.put(`/update-payment-status/${_id}`)
+                        .then(data => {
+                            if (data.data.matchedCount > 0) {
+                                refetch();
+                                setStatus(true)
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Success',
+                                    text: 'Updated Successfully!!!',
+                                    confirmButtonText: 'Ok'
+                                })
+                            }
+                        })
+                }
+                else if (result.isDenied) {
+                    Swal.fire('Changes are not saved', '', 'info')
+                }
+            })
+            .catch(error => {
+                console.error("Error Updating Books:", error);
+            });
+    };
+
     return (
         <div className="overflow-x-auto">
             <table className="table w-full">
@@ -55,14 +88,14 @@ const PaymentsList = ({ payments }) => {
                         <th>Phone</th>
                         <th>Transaction Id</th>
                         <th>Payment</th>
-                        <th>Update</th>
+                        <th>Action</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
                         payments.map((payment, index) => {
-                            const { _id, name, firstName, lastName, paid, transactionId, phone, postcode, address, price } = payment;
+                            const { _id, name, firstName, lastName, paid, transactionId, phone, postcode, product, address, price } = payment;
                             return <tr key={_id}>
                                 <th>{index + 1}</th>
                                 <td className='font-bold'>{name}</td>
@@ -80,8 +113,15 @@ const PaymentsList = ({ payments }) => {
                                     }
                                 </td>
 
-                                <td><Link to={`/dashboard/admin-book-details/${_id}`}>
-                                    <FaEdit className='ml-4 text-xl text-orange-600 hover:text-orange-700' /></Link></td>
+                                <td>
+                                    {
+                                        !status ?
+                                    <button onClick={() => handleUpdate(product)}>
+                                        <FaEdit className='ml-4 text-xl text-orange-600 hover:text-orange-700' /></button>
+                                        :
+                                        <h1 className='font-bold'>Completed</h1>
+                                    }
+                                </td>
 
                                 <td><button onClick={() => handleDelete(_id)}>
                                     <AiFillDelete className='ml-4 text-xl text-orange-600 hover:text-orange-700' />
