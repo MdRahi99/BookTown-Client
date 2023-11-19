@@ -106,7 +106,7 @@ const router = createBrowserRouter([
                 element: <PrivateRoute><MyCart /></PrivateRoute>
             },
             {
-                path: "/dashboard/payment/:id",
+                path: "/dashboard/payment",
                 element: <PrivateRoute><Payment /></PrivateRoute>
             },
             {

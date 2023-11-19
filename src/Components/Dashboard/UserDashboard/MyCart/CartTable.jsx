@@ -44,15 +44,9 @@ const CartTable = ({ cart, handleDelete }) => {
                                 </td>
                                 <td>${price}</td>
                                 <th>
-                                    <div className='flex w-full items-center justify-center'>
-                                        <button onClick={() => handleDelete(_id)} className='ml-3 text-2xl text-orange-600 font-bold hover:text-orange-800' title='Delete'>
-                                            <AiOutlineDelete />
-                                        </button>
-                                        <div className='divider divider-vertical'>OR</div>
-                                        <Link to={`/dashboard/payment/${_id}`} className='ml-3 text-lg text-orange-600 font-bold hover:text-orange-800' title='payment'>
-                                            Pay
-                                        </Link>
-                                    </div>
+                                    <button onClick={() => handleDelete(_id)} className='ml-3 text-2xl text-orange-600 font-bold hover:text-orange-800' title='Delete'>
+                                        <AiOutlineDelete />
+                                    </button>
                                 </th>
                             </tr>
                         })

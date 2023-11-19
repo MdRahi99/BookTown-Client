@@ -71,7 +71,6 @@ const PaymentsList = ({ payments }) => {
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Book Name</th>
                         <th>Customer Name</th>
                         <th>Price</th>
                         <th>Address</th>
@@ -85,12 +84,11 @@ const PaymentsList = ({ payments }) => {
                 <tbody>
                     {
                         payments.map((payment, index) => {
-                            const { _id, name, firstName, lastName, paid, transactionId, phone, postcode, address, price } = payment;
+                            const { _id, firstName, lastName, paid, transactionId, phone, postcode, address, totalPrice } = payment;
                             return <tr key={_id}>
                                 <th>{index + 1}</th>
-                                <td className='font-bold'>{name}</td>
                                 <td>{firstName + lastName}</td>
-                                <td>${price}</td>
+                                <td>${totalPrice}</td>
                                 <td>{`${postcode}, ${address}`}</td>
                                 <td>{phone}</td>
                                 <td>{transactionId}</td>

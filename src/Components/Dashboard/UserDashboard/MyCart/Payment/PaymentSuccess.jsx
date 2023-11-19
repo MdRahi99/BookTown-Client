@@ -25,7 +25,7 @@ const PaymentSuccess = () => {
         return <h1 className='text-2xl text-center text-orange-600 p-10 mt-10 lg:mt-40 font-bold'>No Order Found</h1>
     }
 
-    const { address, category, currency, email, firstName, lastName, name, paid, paidAt, phone, postcode, price, transactionId, _id } = order;
+    const { address, currency, email, firstName, lastName, paid, phone, postcode, totalPrice, transactionId, products } = order;
 
     return (
         <div className='flex flex-col gap-4 p-8 bg-white rounded-xl'>
@@ -38,21 +38,17 @@ const PaymentSuccess = () => {
 
             <div className="overflow-x-auto my-6">
                 <table className="table w-full">
-                    <thead>
+                    <thead className='text-center'>
                         <tr>
-                            <th>Book Name</th>
                             <th>Qty</th>
                             <th>Price</th>
-                            <th>Category</th>
                             <th>Status</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className='text-center'>
                         <tr>
-                            <td className='text-lg font-bold'>{name}</td>
                             <td className='text-lg font-bold'>{1}</td>
-                            <td className='text-lg font-bold'>{currency} {price}</td>
-                            <td className='text-lg font-bold'> {category}</td>
+                            <td className='text-lg font-bold'>{currency} {totalPrice}</td>
                             <td className='text-lg font-bold'>{paid && <span className='text-orange-600 font-bold'>Paid</span>}</td>
                         </tr>
                     </tbody>
