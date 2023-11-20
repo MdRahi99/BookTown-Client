@@ -1,38 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import { AiFillDelete } from "@react-icons/all-files/ai/AiFillDelete";
 import Swal from 'sweetalert2';
 import Title from '../../../../Hooks/Title';
-import useAuth from '../../../../Hooks/useAuth';
 import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
+import useMyBooks from '../../../../Hooks/useMyBooks';
 
 const MyBooks = () => {
     Title('My Books')
 
-    const { user, logOut } = useAuth();
     const [axiosSecure] = useAxiosSecure();
-
-    const [myBooks, setMyBooks] = useState([]);
-
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        axiosSecure.get(`/my-books?email=${user?.email}`)
-            .then(data => {
-                if (!data.data.error) {
-                    setMyBooks(data.data);
-                }
-                else {
-                    logOut()
-                        .then(() => { })
-                        .then(error => {
-                            console.log(error);
-                            navigate('/')
-                        })
-                }
-            })
-    }, []);
+    const [myBooks, refetch] = useMyBooks();
 
     const handleDelete = (_id) => {
         Swal.fire({
@@ -46,14 +24,13 @@ const MyBooks = () => {
                     axiosSecure.delete(`/delete-book/${_id}`)
                         .then(data => {
                             if (data.data.deletedCount > 0) {
+                                refetch();
                                 Swal.fire({
                                     icon: 'success',
                                     title: 'Success',
                                     text: 'Deleted Successfully!!!',
                                     confirmButtonText: 'Ok'
                                 })
-                                const remaining = myBooks.filter(books => books._id !== _id);
-                                setMyBooks(remaining);
                             }
                         })
                 }
