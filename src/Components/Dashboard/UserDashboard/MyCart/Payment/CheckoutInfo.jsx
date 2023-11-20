@@ -20,7 +20,7 @@ const CheckoutInfo = ({ cart, price }) => {
 
             const products = cart.map(item => ({
                 _id: item._id,
-                menuItemId: item.menuItemid,
+                menuItemId: item.menuItemId,
                 name: item.name,
                 category: item.category,
                 price: item.price,
