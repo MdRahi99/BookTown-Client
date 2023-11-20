@@ -4,6 +4,7 @@ import { RiContactsBook2Fill } from '@react-icons/all-files/ri/RiContactsBook2Fi
 import { GiBookshelf } from '@react-icons/all-files/gi/GiBookshelf';
 import { HiShoppingCart } from '@react-icons/all-files/hi/HiShoppingCart';
 import  useCart from '../../../Hooks/useCart';
+import  useOrders from '../../../Hooks/useOrders';
 import useAuth from '../../../Hooks/useAuth';
 
 const UserProfile = () => {
@@ -13,6 +14,7 @@ const UserProfile = () => {
     const navigate = useNavigate();
 
     const [cart] = useCart();
+    const [orders] = useOrders();
 
     const from = location.state?.from?.pathname || '/';
 
@@ -45,6 +47,11 @@ const UserProfile = () => {
                     <HiShoppingCart />
                     <h3 className='hidden lg:block'>My Cart</h3>
                     <span className="indicator-item badge badge-info">{cart?.length || 0}</span>
+                </Link>
+                <Link to='/dashboard/orders' title='My Books' className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
+                    <HiShoppingCart />
+                    <h3 className='hidden lg:block'>My Orders</h3>
+                    <span className="indicator-item badge badge-info">{orders?.length || 0}</span>
                 </Link>
                 <Link to='/dashboard/sell-books' title='Sell Books' className='flex items-center justify-start gap-2 px-4 py-1 rounded-md border-y-2 border-white hover:bg-white hover:text-black'>
                     <RiContactsBook2Fill></RiContactsBook2Fill>

@@ -49,12 +49,16 @@ const PaymentsList = ({ payments }) => {
         })
             .then((result) => {
                 if (result.isConfirmed) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success',
-                        text: 'Updated Successfully!!!',
-                        confirmButtonText: 'Ok'
-                    })
+                    axiosSecure.put(`/update-order/${_id}`)
+                        .then(data => {
+                            if (data.data.modifiedCount > 0) {
+                                Swal.fire({
+                                    title: 'Updated Successfully',
+                                    icon: 'success',
+                                    confirmButtonText: 'Ok'
+                                })
+                            }
+                        })
                 }
                 else if (result.isDenied) {
                     Swal.fire('Changes are not saved', '', 'info')
@@ -102,8 +106,10 @@ const PaymentsList = ({ payments }) => {
                                 </td>
 
                                 <td>
-                                    <button onClick={() => handleUpdate()}>
-                                        <FaEdit className='ml-4 text-xl text-orange-600 hover:text-orange-700' /></button>
+                                    <button
+                                        onClick={() => handleUpdate(_id)} >
+                                        <FaEdit className='ml-4 text-xl text-orange-600 hover:text-orange-700' />
+                                    </button>
                                 </td>
 
                                 <td><button onClick={() => handleDelete(_id)}>

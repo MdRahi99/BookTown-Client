@@ -42,6 +42,7 @@ import AllAdminBooks from "../Components/Dashboard/AdminDashboard/AllAdminBooks/
 import AddBook from "../Components/Dashboard/AdminDashboard/AddBook/AddBook";
 import BookInfo from "../Components/Dashboard/AdminDashboard/AllAdminBooks/BookInfo";
 import AllPayments from "../Components/Dashboard/AdminDashboard/AllPayments/AllPayments";
+import Orders from "../Components/Dashboard/UserDashboard/Orders/Orders";
 // --------------- Admin Dashboard Ends --------------- //
 
 const router = createBrowserRouter([
@@ -116,6 +117,10 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/payment/fail",
                 element: <PrivateRoute><PaymentFailed /></PrivateRoute>
+            },
+            {
+                path: "/dashboard/orders",
+                element: <PrivateRoute><Orders /></PrivateRoute>
             },
             {
                 path: "/dashboard/sell-books",
