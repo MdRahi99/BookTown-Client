@@ -41,7 +41,7 @@ const OrdersList = ({ orders }) => {
                                     }
                                 </td>
                                 <td>
-                                    <div className="font-bold">{paidAt.slice(0, 10)}</div>
+                                    <div className="font-bold">{paidAt?.slice(0, 10)}</div>
                                 </td>
                                 <td>
                                     {
