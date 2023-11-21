@@ -1,6 +1,7 @@
-import React from 'react';
 import { AiFillDelete } from '@react-icons/all-files/ai/AiFillDelete';
 import { FaEdit } from '@react-icons/all-files/fa/FaEdit';
+import { MdLibraryBooks } from "@react-icons/all-files/md/MdLibraryBooks";
+import { HiOutlineBadgeCheck } from "@react-icons/all-files/hi/HiOutlineBadgeCheck";
 import useBooks from '../../../../Hooks/useBooks';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
@@ -42,6 +43,37 @@ const BooksList = ({ books }) => {
             });
     };
 
+    const handleFeatured = (_id) => {
+        Swal.fire({
+            title: 'Are you sure you want to add this as a featured book?',
+            showCancelButton: true,
+            confirmButtonText: 'Ok',
+            denyButtonText: `Cancel`,
+        })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    axiosSecure.put(`/add-feature/${_id}`)
+                        .then(data => {
+                            if (data.data.modifiedCount > 0) {
+                                refetch();
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Success',
+                                    text: 'Added as a Featured Book!!!',
+                                    confirmButtonText: 'Ok'
+                                })
+                            }
+                        })
+                }
+                else if (result.isDenied) {
+                    Swal.fire('Changes are not saved', '', 'info')
+                }
+            })
+            .catch(error => {
+                console.error("Error added as a featured book:", error);
+            });
+    }
+
     return (
         <div className="overflow-x-auto">
             <table className="table w-full">
@@ -58,10 +90,19 @@ const BooksList = ({ books }) => {
                 <tbody>
                     {
                         books.map((book, index) => {
-                            const { _id, name, author, price } = book;
+                            const { _id, name, author, featured, price } = book;
                             return <tr key={_id}>
                                 <th>{index + 1}</th>
-                                <td>{name}</td>
+                                <td className='flex items-center justify-between'>{name}
+                                    {
+                                        !featured ?
+                                            <button onClick={() => handleFeatured(_id)} title='Add as a featured book'>
+                                                <MdLibraryBooks className='text-2xl text-sky-600 hover:text-blue-800' />
+                                            </button>
+                                            :
+                                            <HiOutlineBadgeCheck  className='text-2xl text-sky-600' />
+                                    }
+                                </td>
                                 <td>{author}</td>
                                 <td>${price}</td>
 

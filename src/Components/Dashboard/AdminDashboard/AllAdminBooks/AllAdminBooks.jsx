@@ -1,20 +1,12 @@
-import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
-import { AiFillDelete } from "@react-icons/all-files/ai/AiFillDelete";
-import Swal from 'sweetalert2';
 import Title from '../../../../Hooks/Title';
-import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
-import Search from '../../../AllBooks/Search/Search';
 import useBooks from '../../../../Hooks/useBooks';
 import BooksList from './BooksList';
 
 const AllAdminBooks = () => {
     Title('My Books')
 
-    const [axiosSecure] = useAxiosSecure();
-
-    const [books, refetch, setSearch] = useBooks();
+    const [books] = useBooks();
 
     return (
         <div>
@@ -22,7 +14,6 @@ const AllAdminBooks = () => {
                 books.length > 0 ?
                     <div className='mx-4 my-6 lg:my-0'>
                         <h1 className='text-2xl text-center p-2 border-b-4 rounded-xl border-black border-double font-playFair mb-10'>Total Books: {books.length}</h1>
-                        <Search setSearch={setSearch} />
                         <BooksList books={books} />
                     </div>
                     :
