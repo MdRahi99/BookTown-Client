@@ -4,7 +4,7 @@ const BookAddForm = ({register, handleSubmit, onSubmit, bookDetails, title}) => 
 
     return (
         <div className='flex flex-col w-full gap-8 lg:gap-16 p-10 lg:p-10 bg-[#e0f3ee] rounded-2xl'>
-            <h1 className='text-xl lg:text-3xl rounded-xl text-center bg-[#b7e7da] font-wallPoet p-2 lg:p-4 w-full lg:w-80 uppercase mx-auto'>{title}</h1>
+            <h1 className='text-xl lg:text-3xl rounded-xl text-center bg-[#b7e7da] font-playFair p-2 lg:p-4 w-full lg:w-80 uppercase mx-auto'>{title}</h1>
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className='flex flex-col gap-4'

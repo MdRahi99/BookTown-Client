@@ -42,19 +42,19 @@ const Login = () => {
     return (
         <div>
             <form onSubmit={handleSignIn} className='bg-slate-100 lg:w-1/2 mx-4 border-l-4 border-dashed border-slate-500 lg:mx-auto p-10 my-10'>
-                <h1 className='font-wallPoet text-3xl w-full lg:w-3/4 mx-auto shadow-2xl shadow-slate-500 mb-16 border-x-4 border-slate-500 p-4 text-center uppercase'>Sign In</h1>
+                <h1 className='font-playFair text-3xl w-full lg:w-3/4 mx-auto shadow-2xl shadow-slate-500 mb-16 border-x-4 border-slate-500 p-4 text-center uppercase'>Sign In</h1>
                 <div className='flex flex-col items-center gap-6'>
                     <div className='flex items-center shadow-md shadow-slate-500 justify-between gap-3 border-t-2 border-slate-500 text-black p-3 w-96 mx-2 lg:mx-auto'>
-                        <h3 className='text-xl font-wallPoet'>Email:</h3>
-                        <input name='email' type="email" placeholder="Enter Your Email" className="input input-md font-wallPoet" />
+                        <h3 className='text-xl font-playFair'>Email:</h3>
+                        <input name='email' type="email" placeholder="Enter Your Email" className="input input-md font-playFair" />
                     </div>
                     <div className='flex items-center shadow-md shadow-slate-500 justify-between gap-3 border-t-2 border-slate-500 text-black p-3 w-96 mx-2 lg:mx-auto'>
-                        <h3 className='text-xl font-wallPoet'>Password:</h3>
-                        <input name='password' type="password" placeholder="Enter Your Password" className="input input-md font-wallPoet" />
+                        <h3 className='text-xl font-playFair'>Password:</h3>
+                        <input name='password' type="password" placeholder="Enter Your Password" className="input input-md font-playFair" />
                     </div>
 
                     <div>
-                        <button className='shadow-lg px-16 py-2 font-wallPoet text-xl border-x-2 border-slate-500 hover:bg-black hover:text-white'>Log In</button>
+                        <button className='shadow-lg px-16 py-2 font-playFair text-xl border-x-2 border-slate-500 hover:bg-black hover:text-white'>Log In</button>
                     </div>
 
                     <div className="divider font-trainOne animate-bounce">OR</div>

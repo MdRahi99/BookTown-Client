@@ -46,7 +46,7 @@ const Banner = () => {
                                     </span>
                                     {items.name.slice(5,)}
                                 </h1>
-                                <p className='text-lg w-full lg:w-2/3 mx-auto border-dashed border-y-2 border-white mb-4 font-wallPoet p-5 text-center'>{items.title}</p>
+                                <p className='text-lg w-full lg:w-2/3 mx-auto border-dashed border-y-2 border-white mb-4 font-playFair p-5 text-center'>{items.title}</p>
                             </div>
                         </div>
                     })

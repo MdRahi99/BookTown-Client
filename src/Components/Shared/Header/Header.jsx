@@ -34,7 +34,7 @@ const Header = () => {
           </label>
           <ul
             tabIndex={0}
-            className="w-96 flex flex-col gap-4 items-center menu menu-compact bg-white dropdown-content border-y-4 border-black p-4 m-3 font-wallPoet uppercase"
+            className="w-96 flex flex-col gap-4 items-center menu menu-compact bg-white dropdown-content border-y-4 border-black p-4 m-3 font-playFair uppercase"
           >
             <div className="flex flex-col gap-3 items-center justify-center">
               <li>
@@ -60,12 +60,12 @@ const Header = () => {
             </div>
           </ul>
         </div>
-        <Link to="/" className="text-2xl font-wallPoet">
+        <Link to="/" className="text-2xl font-playFair">
           <span className="bg-black p-1 text-white">Book</span> Town
         </Link>
       </div>
 
-      <div className="navbar-center text-lg font-wallPoet uppercase hidden lg:flex">
+      <div className="navbar-center text-lg font-playFair uppercase hidden lg:flex">
         <ul tabIndex={0} className="menu menu-horizontal flex gap-5">
           <li>
             <NavLink
@@ -102,7 +102,7 @@ const Header = () => {
         </ul>
       </div>
 
-      <div className="navbar-end font-wallPoet uppercase text-xl flex">
+      <div className="navbar-end font-playFair uppercase text-xl flex">
         {user?.email ? (
           <div className="flex items-center gap-8 lg:gap-12">
             {

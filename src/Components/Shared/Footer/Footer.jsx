@@ -5,7 +5,7 @@ import {FaLinkedin} from "@react-icons/all-files/fa/FaLinkedin"
 
 const Footer = () => {
     return (
-        <footer className="footer print:hidden footer-center p-10 font-wallPoet border-dashed border-t-2 w-full lg:w-11/12 mx-auto mt-6 border-black rounded-2xl">
+        <footer className="footer print:hidden footer-center p-10 font-playFair border-dashed border-t-2 w-full lg:w-11/12 mx-auto mt-6 border-black rounded-2xl">
             <div className="grid grid-flow-col gap-4 text-md uppercase">
                 <Link className="border-x-2 border-black px-3 py-1 rounded-xl hover:bg-black hover:text-white" to='/about'>About us</Link>
                 <Link className="border-x-2 border-black px-3 py-1 rounded-xl hover:bg-black hover:text-white" to='/contact'>Contact</Link>

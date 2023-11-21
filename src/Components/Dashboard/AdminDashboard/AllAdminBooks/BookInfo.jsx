@@ -39,7 +39,7 @@ const BookInfo = () => {
                                 <img className='border-4 border-black rounded-xl h-96 w-full p-1' src={img} alt="" />
                             </div>
                             <div className='w-full p-4 lg:w-3/5 mx-3 flex flex-col gap-4'>
-                                <h1 className='border-b-4 rounded-r-xl border-black text-2xl font-wallPoet uppercase'>
+                                <h1 className='border-b-4 rounded-r-xl border-black text-2xl font-playFair uppercase'>
                                     {name}
                                 </h1>
                                 <p className='text-lg text-orange-600'><span className='text-md mr-2'>Author Name:</span>{author}</p>
