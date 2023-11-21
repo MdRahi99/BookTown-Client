@@ -5,54 +5,63 @@ import Swal from 'sweetalert2';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import useAuth from '../../../Hooks/useAuth';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import useImageUpload from '../../../Hooks/useImageUpload';
+import { useRef } from 'react';
 
 const Register = () => {
     Title('Register');
 
     const { createUser, updateUser, logOut, loading } = useAuth();
     const [axiosSecure] = useAxiosSecure();
-
+    const imageInputRef = useRef(null);
+    const { uploadImage } = useImageUpload();
     const navigate = useNavigate();
 
-    const handleCreateUser = (event) => {
+    const handleCreateUser = async (event) => {
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
-        const photoURL = form.photoURL.value;
         const password = form.password.value;
+        const imageFile = imageInputRef.current?.files[0];
 
-        createUser(email, password)
-            .then(result => {
-                const user = result.user;
-                console.log(user);
+        try {
+            const photoURL = imageFile ? await uploadImage(imageFile) : null;
 
-                const userProfile = {
-                    displayName: name,
-                    photoURL: photoURL
-                }
-                updateUser(userProfile)
-                    .then(() => {
-                        const saveUser = { name: user.displayName, email: user.email }
-                        axiosSecure.post('/users', saveUser)
-                            .then(data => {
-                                if (data.data.insertedId) {
-                                    form.reset();
-                                    Swal.fire({
-                                        icon: 'success',
-                                        title: 'User Created Successfully',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    })
-                                    logOut()
-                                        .then(() => {
-                                            navigate('/login')
+            createUser(email, password)
+                .then(result => {
+                    const user = result.user;
+                    console.log(user);
+
+                    const userProfile = {
+                        displayName: name,
+                        photoURL: photoURL
+                    }
+                    updateUser(userProfile)
+                        .then(() => {
+                            const saveUser = { name: user.displayName, email: user.email }
+                            axiosSecure.post('/users', saveUser)
+                                .then(data => {
+                                    if (data.data.insertedId) {
+                                        form.reset();
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'User Created Successfully',
+                                            showConfirmButton: false,
+                                            timer: 1500
                                         })
-                                }
-                            })
-                    })
-            })
-            .catch(error => console.log(error));
+                                        logOut()
+                                            .then(() => {
+                                                navigate('/login')
+                                            })
+                                    }
+                                })
+                        })
+                })
+        }
+        catch (error) {
+            console.error('Image upload failed:', error);
+        }
     };
 
     if (loading) {
@@ -74,7 +83,7 @@ const Register = () => {
                     </div>
                     <div className='flex items-center shadow-md shadow-slate-500 justify-between gap-3 border-t-2 border-slate-500 text-black p-3 w-96 mx-2 lg:mx-auto'>
                         <h3 className='text-xl font-wallPoet'>Photo:</h3>
-                        <input name="photoURL" type="text" placeholder="Enter Your Photo URL" className="input input-md font-wallPoet" />
+                        <input name="photoURL" type="file" ref={imageInputRef} className="input input-md font-wallPoet p-2" />
                     </div>
                     <div className='flex items-center shadow-md shadow-slate-500 justify-between gap-3 border-t-2 border-slate-500 text-black p-3 w-96 mx-2 lg:mx-auto'>
                         <h3 className='text-xl font-wallPoet'>Password:</h3>
