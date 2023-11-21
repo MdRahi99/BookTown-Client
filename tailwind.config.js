@@ -10,6 +10,7 @@ export default {
         'trainOne': ['Train One', 'cursive'],
         'wallPoet': ['Wallpoet', 'cursive'],
         'roboto': ['Roboto', 'sans-serif'],
+        'playFair': ['Playfair', 'Display'],
       },
     },
   },
