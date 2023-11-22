@@ -7,7 +7,6 @@ import Error from "../Components/Shared/Error/Error";
 import Login from "../Components/Register/Login/Login";
 import Register from "../Components/Register/Register/Register";
 import AllBooks from "../Components/AllBooks/AllBooks";
-import About from "../Components/About/About";
 import Contact from "../Components/Contact/Contact";
 import Blogs from "../Components/Blogs/Blogs";
 import BookDetails from "../Components/AllBooks/Books/BookDetails";
@@ -66,10 +65,6 @@ const router = createBrowserRouter([
             {
                 path: "/blogs",
                 element: <Blogs></Blogs>
-            },
-            {
-                path: "/about",
-                element: <About></About>
             },
             {
                 path: "/contact",

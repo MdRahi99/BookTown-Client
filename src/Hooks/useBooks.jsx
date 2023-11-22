@@ -8,7 +8,7 @@ const useBooks = () => {
     const [search, setSearch] = useState('');
     const [axiosSecure] = useAxiosSecure();
 
-    const { refetch, data: books = []} = useQuery({
+    const { refetch, data: books = [], isLoading} = useQuery({
         queryKey: ['books', search, asc],
         queryFn: async () => {
             const res = await axiosSecure.get(`/books-details?search=${search}&sort=${asc ? 'asc' : 'desc'}`);
@@ -16,7 +16,7 @@ const useBooks = () => {
         }
     })
 
-    return [books, refetch, asc, setAsc, setSearch]
+    return [books, isLoading, refetch, asc, setAsc, setSearch]
 };
 
 export default useBooks;

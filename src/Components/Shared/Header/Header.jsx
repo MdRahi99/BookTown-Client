@@ -48,11 +48,6 @@ const Header = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink className="w-60 mx-auto justify-center shadow shadow-black border-b-2 border-black hover:bg-black hover:text-white" to="/about">
-                  About Us
-                </NavLink>
-              </li>
-              <li>
                 <NavLink className="w-60 mx-auto justify-center shadow shadow-black border-b-2 border-black hover:bg-black hover:text-white" to="/contact">
                   Contact
                 </NavLink>
@@ -81,14 +76,6 @@ const Header = () => {
               className={({ isActive }) => (isActive ? "active-link" : "hover:bg-black hover:text-white")}
             >
               Blogs
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/about"
-              className={({ isActive }) => (isActive ? "active-link" : "hover:bg-black hover:text-white")}
-            >
-              About Us
             </NavLink>
           </li>
           <li>

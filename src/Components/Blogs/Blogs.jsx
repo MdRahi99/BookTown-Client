@@ -8,7 +8,7 @@ const Blogs = () => {
     Title('Blogs')
     return (
         <div>
-            <div className='flex justify-between items-center text-3xl font-playFair p-10 border-dashed border-b-2 border-black uppercase text-center rounded-2xl my-12'>
+            <div className='flex justify-between items-center text-3xl font-playFair p-10 uppercase text-center rounded-2xl'>
                 <RiArticleFill className='text-3xl'></RiArticleFill>
                 <h1>Latest Blogs</h1>
                 <RiArticleFill className='text-3xl'></RiArticleFill>

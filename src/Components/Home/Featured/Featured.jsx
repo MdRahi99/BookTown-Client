@@ -2,12 +2,17 @@ import { FaBookOpen } from "@react-icons/all-files/fa/FaBookOpen";
 import React from 'react';
 import useBooks from "../../../Hooks/useBooks";
 import FeaturedBooks from "./FeaturedBooks";
+import Loader from '../../Shared/Loader/Loader';
 
 const Featured = () => {
 
-    const [books] = useBooks();
+    const [books, isLoading] = useBooks();
 
     const featuredBooks = books.filter(book => book.featured === true);
+
+    if(isLoading){
+        return <Loader />
+    }
 
     return (
         <div className="flex flex-col gap-4">
