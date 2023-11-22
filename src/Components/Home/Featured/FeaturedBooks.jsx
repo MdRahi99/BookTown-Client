@@ -13,10 +13,10 @@ const FeaturedBooks = ({ featuredBooks }) => {
                     key={_id} >
                         <figure><img className='p-2 w-96 lg:w-96 h-full rounded-xl' src={img} /></figure>
                         <div className="card-body">
-                            <h2 className="card-title h-full">
-                                {name}
+                            <div className="card-title flex items-center justify-between h-full">
+                                <h2>{name}</h2>
                                 <div className="badge badge-info">{featured && 'Featured'}</div>
-                            </h2>
+                            </div>
                             <div className="card-actions justify-end mt-4">
                                 <div className="badge badge-ghost flex items-center gap-2 font-bold"><FaStar className='text-orange-400' />{rating}</div>
                                 <div className="badge badge-ghost font-bold">${price}</div>

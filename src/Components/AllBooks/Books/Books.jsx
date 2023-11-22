@@ -10,7 +10,7 @@ const Books = ({ filteredBooks }) => {
                 filteredBooks.map(book => {
                     const { _id, img, name, author, rating, price } = book;
                     return (
-                        <div key={_id} className='rounded-2xl flex flex-col gap-3 shadow-xl outline-dashed outline-[#b3b4b4] p-4 h-full relative'>
+                        <Link to={`/book-details/${_id}`} key={_id} className='rounded-2xl flex flex-col gap-3 shadow-xl outline-dashed outline-[#b3b4b4] p-4 h-full relative'>
                             <div>
                                 <img className='w-full h-64 rounded-xl' src={img} alt="" />
                             </div>
@@ -28,12 +28,12 @@ const Books = ({ filteredBooks }) => {
                                 <p className='text-2xl font-semibold'><small className='text-2xl font-bold'>$</small>{price}</p>
                                 <Link
                                     to={`/book-details/${_id}`}
-                                    className='flex gap-2 items-center animate-pulse'>
+                                    className='flex gap-2 items-center'>
                                     <h1>View Details</h1>
                                     <FaArrowRight></FaArrowRight>
                                 </Link>
                             </div>
-                        </div>
+                        </Link>
                     )
                 })
             }

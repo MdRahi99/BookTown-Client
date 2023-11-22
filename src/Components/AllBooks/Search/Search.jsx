@@ -16,19 +16,19 @@ const Search = ({ setSearch }) => {
     };
 
     return (
-        <div className='mb-12 flex justify-between items-center'>
+        <div className='flex justify-between items-center'>
             <form
                 onChange={handleSearch}
                 className='flex w-full gap-3 items-center justify-center'
             >
                 <input type="text" ref={searchRef} placeholder="Search here"
-                    className="input border-2 focus:border-none border-black rounded-xl w-full max-w-md"
+                    className="input h-10 focus:outline-none border-2 border-black rounded-xl w-full"
                 />
                 <div>
                     <button
                         onClick={handleClear}
-                        className=" border-2 p-3 rounded-xl border-black hover:bg-black hover:text-white">
-                        <AiFillDelete className='text-2xl' />
+                        className="h-10 hover:text-orange-600">
+                        <AiFillDelete className='text-3xl' />
                     </button>
                 </div>
             </form>
