@@ -1,8 +1,8 @@
 import Title from "../../Hooks/Title";
-import Blogs from "../Blogs/Blogs";
 import Banner from "./Banner/Banner";
 import Featured from "./Featured/Featured";
 import ParallaxInfo from "./ParallaxInfo/ParallaxInfo";
+import Quote from "./Quote/Quote";
 import Support from "./Support/Support";
 
 const Home = () => {
@@ -13,7 +13,7 @@ const Home = () => {
             <Support />
             <ParallaxInfo />
             <Featured />
-            <Blogs />
+            <Quote />
         </div>
     );
 };

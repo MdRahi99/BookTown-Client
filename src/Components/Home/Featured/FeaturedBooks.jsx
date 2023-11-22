@@ -7,7 +7,6 @@ const FeaturedBooks = ({ featuredBooks }) => {
         <div className='grid grid-cols-1 lg:grid-cols-4 items-center gap-8 justify-between'>
             {
                 featuredBooks.slice(0, 8).map(books => {
-                    console.log(books);
                     const { _id, name, featured, img, price, rating } = books;
                     return <Link to={`/book-details/${_id}`} className="card hover:animate-pulse w-full shadow-2xl h-96 rounded-xl" 
                     key={_id} >
