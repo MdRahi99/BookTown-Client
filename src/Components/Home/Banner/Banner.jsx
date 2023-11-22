@@ -28,9 +28,9 @@ const Banner = () => {
     ];
 
     return (
-        <div className='grid grid-cols-12 justify-between items-center gap-8 lg:mx-0 mx-2 rounded-2xl shadow-xl p-2'>
+        <div className='flex lg:flex-row flex-col justify-between items-center gap-8 lg:mx-0 mx-2 rounded-2xl shadow-xl p-2'>
 
-            <Carousel className='col-span-12 lg:col-span-11 text-center rounded-xl'>
+            <Carousel className='w-full lg:w-11/12 text-center rounded-xl'>
                 {
                     carouselItems.map((items, index) => {
                         return <div key={index} className='h-96'>
@@ -53,7 +53,7 @@ const Banner = () => {
                 }
             </Carousel>
 
-            <div className="col-span-12 lg:col-span-1 h-full flex items-center border-r-4 rounded-xl border-double bg-slate-100 border-black justify-center flex-row lg:flex-col gap-4 mt-3 lg:mt-0 text-3xl">
+            <div className="w-full lg:w-1/12 h-12 lg:h-96 flex items-center border-r-4 rounded-xl border-double bg-slate-100 border-black justify-center flex-row lg:flex-col gap-4 mt-3 lg:mt-0 text-3xl">
                 <FaFacebook className="hover:p-1 hover:bg-black hover:text-white hover:animate-pulse"></FaFacebook>
                 <FaInstagram className="hover:p-1 hover:bg-black hover:text-white hover:animate-pulse"></FaInstagram>
                 <FaLinkedin className="hover:p-1 hover:bg-black hover:text-white hover:animate-pulse"></FaLinkedin>
