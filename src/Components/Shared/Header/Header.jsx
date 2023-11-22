@@ -34,7 +34,7 @@ const Header = () => {
           </label>
           <ul
             tabIndex={0}
-            className="w-96 flex flex-col gap-4 items-center menu menu-compact bg-white dropdown-content border-y-4 border-black p-4 m-3 font-playFair uppercase"
+            className="w-80 flex flex-col gap-4 items-center menu menu-compact bg-white dropdown-content border-y-4 border-black p-4 m-3 font-playFair uppercase"
           >
             <div className="flex flex-col gap-3 items-center justify-center">
               <li>
@@ -111,7 +111,7 @@ const Header = () => {
               to="/login"
               className="flex gap-2 items-center border-y-2 rounded-xl shadow shadow-black border-black hover:bg-black hover:text-white px-2 py-1"
             >
-              <h3>Log In</h3>
+              <h3 className="text-sm lg:text-xl">Log In</h3>
               <RiLoginCircleFill></RiLoginCircleFill>
             </Link>
           </div>
