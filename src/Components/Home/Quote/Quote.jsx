@@ -14,11 +14,11 @@ const Quote = () => {
             {
                 quoteDetails.map((quote, index) => {
                     const { title, img, description, author } = quote;
-                    return <div key={index} className='grid grid-cols-12 gap-8 items-center'>
-                        <div className='hidden lg:flex lg:col-span-6 justify-center'>
+                    return <div key={index} className='flex gap-8 items-center'>
+                        <div className='hidden lg:w-1/2 lg:flex justify-center'>
                             <img className='h-full w-full' src={img} alt="" />
                         </div>
-                        <div className='col-span-12 lg:col-span-6 flex flex-col gap-6'>
+                        <div className='flex flex-col w-full lg:w-1/2 gap-6'>
                             <FaQuoteRight className='text-2xl lg:text-3xl text-orange-700 w-full lg:w-48' />
                             <div className='text-center flex flex-col gap-10'>
                                 <h1 className='text-2xl lg:text-3xl font-normal font-playFair w-full lg:w-2/3 mx-auto'>{title}</h1>
@@ -27,7 +27,7 @@ const Quote = () => {
                                 </span>
                                     {author}
                                 </p>
-                                <p className='text-left w-full lg:w-2/3 mx-auto text-md font-serif'>{description}</p>
+                                <p className='text-justify w-full lg:w-2/3 mx-auto text-md font-serif'>{description}</p>
                             </div>
                         </div>
                     </div>
